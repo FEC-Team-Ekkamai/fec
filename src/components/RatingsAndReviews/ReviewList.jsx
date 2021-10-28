@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ReviewList from './ReviewList.jsx'
-import ReviewBody from './ReviewBody.jsx';
+import axios from 'axios';
+import ReviewListEntry from './ReviewListEntry.jsx';
 
-class App extends React.Component {
+
+class ReviewList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,10 +15,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <ReviewList />
+        <ReviewListEntry />
       </div>
     )
   }
 }
 
-export default App;
+export default ReviewList;
