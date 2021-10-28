@@ -15,7 +15,7 @@ module.exports = {
       }
     ]
   },
-  mode: 'development',
+  mode: "development",
   devServer: {
     static: {
       directory: path.join(__dirname, 'public')
