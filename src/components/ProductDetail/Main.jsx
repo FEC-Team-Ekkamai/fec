@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ProductDetail from './ProductDetail/Main.jsx'
 
-class App extends React.Component {
+class ProductDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,11 +12,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        This is the FEC app
-        <ProductDetail />
+        Our product detail section will live here.
       </div>
     )
   }
 }
 
-export default App;
+export default ProductDetail;
