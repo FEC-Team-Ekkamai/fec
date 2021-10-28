@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import ReviewList from "./ReviewList.jsx";
-import ReviewBody from "./ReviewBody.jsx";
+import ReviewList from "./RatingsandReviews/ReviewList.jsx";
+import ReviewBody from "./RatingsandReviews/ReviewBody.jsx";
 import ProductDetail from "./ProductDetail/Main.jsx";
 
 class App extends React.Component {

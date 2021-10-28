@@ -13,12 +13,12 @@ const StyledEntry = styled.div`
   `
 
 
-const ReviewListEntry = () => (
+const ReviewListEntry = (props) => (
 <StyledEntry>
-  <ReviewDate />
-  <ReviewTitle />
-  <ReviewBody />
-  <ReviewHelp />
+
+  <ReviewTitle title = {props.review.results[0].summary}/>
+  <ReviewBody body = {props.review.results[0].body}/>
+  <ReviewHelp helpfulness = {props.review.results[0].helpfulness}/>
 </StyledEntry>
 )
 

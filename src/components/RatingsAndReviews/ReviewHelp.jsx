@@ -16,7 +16,7 @@ const StyledHelp = styled.div`
 
 const ReviewHelp = () => (
 <StyledHelp>
-  Helpful? Yes(9) | Report
+  Helpful? Yes({props.helpfullness}) | Report
 </StyledHelp>
 )
 
