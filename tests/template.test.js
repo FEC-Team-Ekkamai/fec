@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { shallow, configure} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
 // import any others components you want to test
 
@@ -45,7 +46,8 @@ import { shallow, configure} from 'enzyme';
  *     https://enzymejs.github.io/enzyme/docs/api/#api-reference
  */
 
-// ???
+// abstracts away code based on the version of React
+// so enzyme code can remain the same.
 configure({adapter: new Adapter()});
 
 // ==================  Snapshot Testing  ==================
