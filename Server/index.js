@@ -1,23 +1,22 @@
 const express = require('express');
 const path = require('path');
 const axios = require('axios');
+const api = require('./config.js')
 const app = express();
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 
-// : 'token ghp...'
-const token = {Authorization:'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'};
 /**
  * These are the routes for Product APIs
  */
 
 const options = {
-                method: 'get',
-                url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products`,
-                headers: token
-                }
-                
+  method: 'get',
+  url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products`,
+  headers: {Authorization: api.TOKEN}
+}
+
 app.get('/api/products', (req, res) => {
   axios(options)
    .then((response) => {
