@@ -10,7 +10,6 @@ app.use(express.static(path.join(__dirname, '../public')));
 /**
  * These are the routes for Product APIs
  */
-console.log(api.TOKEN);
 
 const options = {
   method: 'get',
