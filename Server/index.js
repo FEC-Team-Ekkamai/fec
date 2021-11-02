@@ -42,7 +42,7 @@ app.post('/api/products', (req, res) => {
   const options = {
     method: 'get',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/`,
-    headers: token,
+    headers: { Authorization: api.TOKEN },
     params: {product_id: id}
     }
   axios(options)
@@ -50,7 +50,7 @@ app.post('/api/products', (req, res) => {
      res.send(response.data);
    })
    .catch((error) => {
-     console.log(error);
+    //  console.log(error);
      res.sendStatus(500);
    })
 })
