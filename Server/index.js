@@ -58,6 +58,21 @@ app.post('/api/products', (req, res) => {
 /**
  * These are the routes for Questions and Answers APIs
  */
+ app.get('/api/products/questions', (req, res) => {
+  let questionOptions = {
+    method: 'GET',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/?product_id=${req.query.product_id}`,
+    headers: { Authorization: api.TOKEN }
+  };
+  axios(questionOptions)
+    .then(questions => {
+      res.send(questions.data);
+    })
+    .catch(error => {
+      res.status(500).send(error);
+    })
+});
+
 
 const port = 3000;
 
