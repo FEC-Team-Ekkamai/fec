@@ -16,12 +16,12 @@ module.exports = {
     ]
   },
 
-  devServer: {
-    static: {
-      directory: path.join(__dirname, 'public'),
-    },
-    compress: true,
-    port: 3000,
-  },
+  // devServer: {
+  //   static: {
+  //     directory: path.join(__dirname, 'public'),
+  //   },
+  //   compress: true,
+  //   port: 3000,
+  // },
   mode: "development"
 }

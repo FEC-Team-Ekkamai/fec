@@ -14,10 +14,12 @@ const StyledHelp = styled.div`
   `
 
 
-const ReviewHelp = () => (
+const ReviewHelp = (props) => (
 <StyledHelp>
-  Helpful? Yes({props.helpfullness}) | Report
+  Helpful? Yes ( {props.helpfulness} ) | Report
 </StyledHelp>
 )
 
+
 export default ReviewHelp;
+

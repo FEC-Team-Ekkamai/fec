@@ -14,7 +14,7 @@ const StyledDate = styled.div`
 
 const ReviewDate = (props) => (
 <StyledDate>
-  {props.date}
+  {props.username}, {props.date}
 </StyledDate>
 )
 
