@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Search from './search/index.jsx';
 import QuestionsList from './QuestionsList/questionsList.jsx';
+import AddQuestion from './AddQuestion/index.jsx';
 
 class QuestionsView extends React.Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class QuestionsView extends React.Component {
       questions: [],
       displayedQuestions: [],
       answers: []
-    }
+    };
     this.filterQuestions = this.filterQuestions.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -45,7 +46,7 @@ class QuestionsView extends React.Component {
           <QuestionsList questions={this.state.displayedQuestions}/>
         </div>
         <div className="questions-footer">
-          <button className="add-question">Add a Question</button>
+          <AddQuestion />
           <button className="view-more-questions">More Answered Questions</button>
         </div>
       </>
