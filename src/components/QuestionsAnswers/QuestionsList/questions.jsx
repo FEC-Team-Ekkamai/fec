@@ -5,7 +5,7 @@ const Questions = (props) => (
   <li key={props.question.question_id}>
     <div className="question-body">
       <span className="question-header">
-        <b>{props.question.question_body}</b>
+        <b>Q: {props.question.question_body}</b>
       </span>
       <span className="">   Helpful? <u>Yes</u> ({props.question.question_helpfulness}) | <u>Add an Answer</u></span>
     </div>
@@ -16,7 +16,6 @@ const Questions = (props) => (
         ))}
       </ul>
     </div>
-
   </li>
 );
 
