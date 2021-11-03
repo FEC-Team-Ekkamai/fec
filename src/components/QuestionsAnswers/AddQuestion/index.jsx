@@ -12,12 +12,10 @@ class AddQuestion extends React.Component {
   }
 
   handleClick() {
-    console.log('Modal Button Clicked');
     this.displayModal();
   }
 
   onClose() {
-    console.log('clicked!!!');
     this.setState({ showModal: false });
   }
 
