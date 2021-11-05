@@ -10,40 +10,65 @@ class App extends React.Component {
     super(props);
     this.state = {
       products: [],
-      firstProductShown: {}
+      firstProductShown: {},
+      styles: {}
     };
     this.getProducts = this.getProducts.bind(this);
     this.getFirstProduct = this.getFirstProduct.bind(this);
-  }
-
-  getFirstProduct () {
-    var numberOfProducts = this.state.products.length;
-    var randomProduct = Math.floor(Math.random() * numberOfProducts);
-    this.setState({firstProductShown: this.state.products[randomProduct]})
-    console.log('this is 1: ', this.state.firstProductShown)
-  }
-
-  getProducts () {
-    axios.get('http://127.0.0.1:3000/api/products')
-      .then((response) => {
-        this.setState({products: response.data});
-        this.getFirstProduct();
-        console.log('this is client side: ', this.state.products);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+    this.getProductByID = this.getProductByID.bind(this);
+    this.getProductStyle = this.getProductStyles.bind(this)
   }
 
   componentDidMount () {
     this.getProducts();
   }
 
+  getFirstProduct () {
+    var numberOfProducts = this.state.products.length;
+    var randomProduct = Math.floor(Math.random() * numberOfProducts);
+    this.setState({firstProductShown: this.state.products[randomProduct]})
+  }
+
+  getProducts () {
+    axios.get(`http://127.0.0.1:3000/api/products`)
+      .then((response) => {
+        this.setState({products: response.data});
+        this.getFirstProduct();
+        this.getProductStyles(this.state.firstProductShown.id);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+
+  getProductByID (productId) {
+    axios.post(`http://127.0.0.1:3000/api/products/id`, {
+      product: productId
+    })
+    .then((response) => {
+    })
+    .catch((error) => {
+      console.log('post error: ', error);
+    })
+  }
+
+  getProductStyles (productId) {
+    axios.post(`http://127.0.0.1:3000/api/products/id/styles`, {
+      product: productId
+    })
+    .then((response) => {
+      this.setState({ styles: response.data})
+    })
+    .catch((error) => {
+      console.log('post error: ', error);
+    })
+  }
+
   render() {
     return (
       <div>
         This is the FEC app
-        <ProductDetail />
+        <ProductDetail currentProduct={this.state.firstProductShown} styles={this.state.styles}/>
         <ReviewList />
       </div>
     );
