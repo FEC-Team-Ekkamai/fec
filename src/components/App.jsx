@@ -5,6 +5,8 @@ import ReviewBody from "./RatingsAndReviews/ReviewBody.jsx";
 import ProductDetail from "./ProductDetail/Main.jsx";
 import ReviewList from "./RatingsAndReviews/ReviewList.jsx";
 
+// this is a test
+
 class App extends React.Component {
   constructor(props) {
     super(props);
