@@ -1,7 +1,6 @@
 import React from 'react';
 
 var AddToCart = (props) => {
-  // console.log(props.styles)
   return (
     // props.props.styles.results.map((icon))
     // <IconEntry />

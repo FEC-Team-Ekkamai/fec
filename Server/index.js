@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const axios = require('axios');
-const api = require('./config.js')
+//const api = require('./config.js')
 const app = express();
 const token =require('./token');
 

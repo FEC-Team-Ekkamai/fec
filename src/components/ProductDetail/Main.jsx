@@ -14,7 +14,6 @@ class ProductDetail extends React.Component {
   }
 
   render() {
-    console.log('this is what im showing you: ', this.props.styles.results)
     return (
       <div>
         <h3 style={{textAlign: 'center'}}>SITE-WIDE ANNOUNCEMENT MESSAGE! -- SALE / DISCOUNT <b>OFFER</b> -- <u>NEW PRODUCT HIGHLIGHT</u></h3>
