@@ -15,7 +15,7 @@ const options = {
   method: 'get',
   url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products`,
   headers: {Authorization: api.TOKEN}
-}
+};
 
 app.get('/api/products', (req, res) => {
   axios(options)
@@ -26,12 +26,12 @@ app.get('/api/products', (req, res) => {
      console.log(error);
      res.sendStatus(500);
    })
-})
+});
 
 app.post('/api/products', (req, res) => {
   console.log('you got a post');
   res.sendStatus(200);
-})
+});
 
 
 /**
@@ -44,16 +44,15 @@ app.post('/api/products', (req, res) => {
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/`,
     headers: { Authorization: api.TOKEN },
     params: {product_id: id}
-    }
+  };
   axios(options)
    .then((response) => {
      res.send(response.data);
    })
    .catch((error) => {
-    //  console.log(error);
      res.sendStatus(500);
-   })
-})
+   });
+});
 
 /**
  * These are the routes for Questions and Answers APIs
@@ -70,7 +69,7 @@ app.post('/api/products', (req, res) => {
     })
     .catch(error => {
       res.status(500).send(error);
-    })
+    });
 });
 
 app.post('/api/products/questions', (req, res) => {
@@ -88,7 +87,7 @@ app.post('/api/products/questions', (req, res) => {
     })
     .catch(error => {
       res.status(500).send(error);
-    })
+    });
 });
 
 
@@ -96,4 +95,4 @@ const port = 3000;
 
 app.listen(port, () => {
   console.log('You are listening on Port: 3000')
-})
+});
