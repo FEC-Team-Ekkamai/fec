@@ -73,6 +73,24 @@ app.post('/api/products', (req, res) => {
     })
 });
 
+app.post('/api/products/questions', (req, res) => {
+  let questionOptions = {
+    method: 'POST',
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/',
+    headers: {
+      Authorization: api.TOKEN,
+    },
+    data: req.body
+  };
+  axios(questionOptions)
+    .then(results => {
+      res.send(results.data);
+    })
+    .catch(error => {
+      res.status(500).send(error);
+    })
+});
+
 
 const port = 3000;
 
