@@ -9,33 +9,9 @@ const StyledBody = styled.div`
   `
 
 
-const ReviewBody = () => (
+const ReviewBody = (props) => (
 <StyledBody>
-  This is a sample body
-  This is a sample body
-  This is a sample body
-  This is a sample body
-  This is a sample body
-  This is a sample body
-  This is a sample body
-  This is a sample body
-  This is a sample body
-  This is a sample body
-  This is a sample body
-  This is a sample body
-  This is a sample body
-  This is a sample body
-  This is a sample body
-  This is a sample body
-  This is a sample body
-  This is a sample body
-  This is a sample body
-  This is a sample body
-  This is a sample body
-  This is a sample body
-  This is a sample body
-  This is a sample body
-  This is a sample body
+  {props.body}
 </StyledBody>
 )
 

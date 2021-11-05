@@ -4,6 +4,8 @@ import ReviewTitle from './ReviewTitle.jsx';
 import ReviewBody from './ReviewBody.jsx';
 import ReviewDate from './ReviewDate.jsx';
 import ReviewHelp from './ReviewHelp.jsx';
+import ReviewRecommendation from './ReviewRecommendation.jsx'
+import ReviewResponse from './ReviewResponse.jsx'
 
 const StyledEntry = styled.div`
   width: 550px;
@@ -13,12 +15,14 @@ const StyledEntry = styled.div`
   `
 
 
-const ReviewListEntry = () => (
+const ReviewListEntry = (props) => (
 <StyledEntry>
-  <ReviewDate />
-  <ReviewTitle />
-  <ReviewBody />
-  <ReviewHelp />
+  <ReviewDate date = {new Date(props.review.date).toLocaleDateString(undefined, {year: 'numeric', month: 'long', day: 'numeric'})} username = {props.review.reviewer_name} />
+  <ReviewTitle title = {props.review.summary}/>
+  <ReviewBody body = {props.review.body}/>
+  <ReviewRecommendation recommend = {props.review.recommend} />
+  <ReviewResponse response = {props.review.response} />
+  <ReviewHelp helpfulness = {props.review.helpfulness}/>
 </StyledEntry>
 )
 

@@ -10,9 +10,9 @@ const StyledTitle = styled.div`
   `
 
 
-const ReviewTitle = () => (
+const ReviewTitle = (props) => (
 <StyledTitle>
-  This is a sample title
+  {props.title}
 </StyledTitle>
 )
 

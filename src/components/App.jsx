@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import ReviewList from "./RatingsAndReviews/ReviewList.jsx";
+import axios from 'axios';
 import ReviewBody from "./RatingsAndReviews/ReviewBody.jsx";
 import ProductDetail from "./ProductDetail/Main.jsx";
-import axios from 'axios'
+import ReviewList from "./RatingsAndReviews/ReviewList.jsx";
 
 class App extends React.Component {
   constructor(props) {
@@ -65,11 +65,21 @@ class App extends React.Component {
   }
 
   render() {
+    const hasFirstProduct = Object.keys(this.state.firstProductShown);
     return (
       <div>
         This is the FEC app
         <ProductDetail currentProduct={this.state.firstProductShown} styles={this.state.styles}/>
         <ReviewList />
+        <ProductDetail />
+        <div>
+          {hasFirstProduct.length !== 0
+            ? <ReviewList firstProduct = {this.state.firstProductShown.id}/>
+            : null
+          }
+        </div>
+
+
       </div>
     );
   }

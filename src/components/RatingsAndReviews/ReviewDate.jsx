@@ -12,9 +12,9 @@ const StyledDate = styled.div`
   `
 
 
-const ReviewDate = () => (
+const ReviewDate = (props) => (
 <StyledDate>
-  January 1, 2019
+  {props.username}, {props.date}
 </StyledDate>
 )
 
