@@ -21,7 +21,6 @@ class App extends React.Component {
     var numberOfProducts = this.state.products.length;
     var randomProduct = Math.floor(Math.random() * numberOfProducts);
     this.setState({firstProductShown: this.state.products[randomProduct]})
-    console.log('this is 1: ', this.state.firstProductShown)
   }
 
   getProducts () {
@@ -29,7 +28,6 @@ class App extends React.Component {
       .then((response) => {
         this.setState({products: response.data});
         this.getFirstProduct();
-        console.log('this is client side: ', this.state.products);
       })
       .catch((error) => {
         console.log(error);
@@ -53,8 +51,6 @@ class App extends React.Component {
             : null
           }
         </div>
-
-
       </div>
     );
   }
