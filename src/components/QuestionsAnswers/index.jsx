@@ -13,6 +13,7 @@ class QuestionsView extends React.Component {
       answers: []
     };
     this.filterQuestions = this.filterQuestions.bind(this);
+    this.handleQuestionSubmit = this.handleQuestionSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -23,6 +24,15 @@ class QuestionsView extends React.Component {
       this.filterQuestions('');
     })
     .catch(console.error)
+  }
+
+  // change name
+  handleQuestionSubmit(event, body) {
+    event.preventDefault();
+    body.product_id = this.props.productId;
+    axios.post('/api/products/questions', body)
+      .then(console.log)  // maybe perform redirection here or create 'success' modal
+      .catch(console.error)
   }
 
   handleChange(event) {
@@ -46,7 +56,7 @@ class QuestionsView extends React.Component {
           <QuestionsList questions={this.state.displayedQuestions}/>
         </div>
         <div className="questions-footer">
-          <AddQuestion />
+          <AddQuestion handleSubmit={this.handleQuestionSubmit}/>
           <button className="view-more-questions">More Answered Questions</button>
         </div>
       </>
