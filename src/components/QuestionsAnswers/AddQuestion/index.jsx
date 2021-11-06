@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from './modal.jsx';
 
+
 class AddQuestion extends React.Component {
   constructor(props) {
     super(props);
@@ -12,21 +13,21 @@ class AddQuestion extends React.Component {
   }
 
   handleClick() {
-    this.displayModal();
+    this.setState({ showModal: true });
   }
 
   onClose() {
     this.setState({ showModal: false });
   }
 
-  displayModal() {
-    this.setState({ showModal: true });
-  }
-
   render() {
     return (
       <div>
-        <Modal onClose={this.onClose} view={this.state.showModal}/>
+        <Modal
+          onSubmit={this.props.handleSubmit}
+          view={this.state.showModal}
+          onClose={this.onClose}
+        />
         <button
           className="add-question"
           onClick={this.handleClick}
