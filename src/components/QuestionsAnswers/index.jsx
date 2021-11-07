@@ -10,11 +10,12 @@ class QuestionsView extends React.Component {
     this.state = {
       questions: [],
       displayedQuestions: [],
-      answers: []
+      numQuestionsDisplayed: 2,
     };
-    this.filterQuestions = this.filterQuestions.bind(this);
     this.handleQuestionSubmit = this.handleQuestionSubmit.bind(this);
+    this.filterQuestions = this.filterQuestions.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleViewMore = this.handleViewMore.bind(this);
   }
 
   componentDidMount() {
@@ -35,6 +36,16 @@ class QuestionsView extends React.Component {
       .catch(console.error)
   }
 
+  handleViewMore(event) {
+    event.preventDefault();
+    let numDisplayed = this.state.numQuestionsDisplayed;
+    if (numDisplayed < this.state.questions.length) {
+      this.setState({
+        numQuestionsDisplayed: numDisplayed + 2
+      });
+    }
+  }
+
   handleChange(event) {
     this.filterQuestions(event.target.value);
   }
@@ -44,7 +55,7 @@ class QuestionsView extends React.Component {
       displayedQuestions: this.state.questions.filter(question => {
         return question.question_body.toLowerCase().includes(query.toLowerCase());
       })
-    })
+    });
   }
 
   render() {
@@ -53,11 +64,19 @@ class QuestionsView extends React.Component {
         <div className="qa-container">
           <h3>Questions &amp; Answers</h3>
           <Search onChange={this.handleChange} />
-          <QuestionsList questions={this.state.displayedQuestions}/>
+          <QuestionsList
+            numQuestionsDisplayed={this.state.numQuestionsDisplayed}
+            questions={this.state.displayedQuestions}
+          />
         </div>
         <div className="questions-footer">
           <AddQuestion handleSubmit={this.handleQuestionSubmit}/>
-          <button className="view-more-questions">More Answered Questions</button>
+          <button
+            className="view-more-questions"
+            onClick={this.handleViewMore}
+          >
+              More Answered Questions
+          </button>
         </div>
       </>
     );
