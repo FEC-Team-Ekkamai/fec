@@ -3,10 +3,15 @@ import Questions from './questions.jsx';
 
 const QuestionsList = (props) => (
   <div className="questions-view">
-    <div className="questions-list">
+     <div className="questions-list">
       <ul>
-        {props.questions.map(question => (
-          <Questions question={question} key={question.question_id} />
+        {props.questions.map((question, index) => (
+          index < props.numQuestionsDisplayed
+            ? <Questions
+                question={question}
+                key={question.question_id}
+              />
+            : null
         ))}
       </ul>
     </div>
