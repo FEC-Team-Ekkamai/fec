@@ -13,7 +13,7 @@ class App extends React.Component {
     this.state = {
       products: [],
       firstProductShown: {},
-      styles: {}
+      styles: null
     };
     this.getProducts = this.getProducts.bind(this);
     this.getFirstProduct = this.getFirstProduct.bind(this);
@@ -34,7 +34,6 @@ class App extends React.Component {
   getProducts () {
     axios.get(`http://127.0.0.1:3000/api/products`)
       .then((response) => {
-        console.log("this is the response", response)
         this.setState({products: response.data});
         this.getFirstProduct();
         this.getProductStyles(this.state.firstProductShown.id);
@@ -72,18 +71,16 @@ class App extends React.Component {
     return (
       <div>
         This is the FEC app
-        {hasFirstProduct.length !== 0
+        {this.state.styles !== null
             ? <ProductDetail currentProduct={this.state.firstProductShown} styles={this.state.styles}/>
             : null
           }
         <div>
-          {hasFirstProduct.length !== 0
+          {this.state.styles !== null
             ? <ReviewList firstProduct = {this.state.firstProductShown.id}/>
             : null
           }
         </div>
-
-
       </div>
     );
   }

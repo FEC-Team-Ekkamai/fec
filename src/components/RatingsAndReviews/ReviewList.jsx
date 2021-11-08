@@ -33,7 +33,6 @@ class ReviewList extends React.Component {
       )
       .then((response) => {
         this.setState({productReviews: response.data.results});
-        console.log('this is ReviewList: ', this.state.productReviews);
       })
       .catch((error) => {
         console.log(error);
@@ -41,7 +40,6 @@ class ReviewList extends React.Component {
   }
 
   componentDidMount() {
-    console.log('CDM', this.state);
     this.getReviewsForProduct();
   }
 
@@ -50,7 +48,7 @@ class ReviewList extends React.Component {
     return (
       <div>
         {hasReviews !== 0
-            ? this.state.productReviews.map((review) => <ReviewListEntry review={review} />)
+            ? this.state.productReviews.map((review, i) => <ReviewListEntry review={review} key={i}/>)
             : null
           }
       </div>
