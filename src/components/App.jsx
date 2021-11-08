@@ -4,6 +4,7 @@ import axios from 'axios';
 import ReviewBody from "./RatingsAndReviews/ReviewBody.jsx";
 import ProductDetail from "./ProductDetail/Main.jsx";
 import ReviewList from "./RatingsAndReviews/ReviewList.jsx";
+import QuestionsView from './QuestionsAnswers/index.jsx';
 
 // this is a test
 
@@ -76,7 +77,8 @@ class App extends React.Component {
           }
         <div>
           {this.state.styles !== null
-            ? <ReviewList firstProduct = {this.state.firstProductShown.id}/>
+            ? <><QuestionsView productId={this.state.firstProductShown.id}/>
+            <ReviewList firstProduct = {this.state.firstProductShown.id}/></>
             : null
           }
         </div>

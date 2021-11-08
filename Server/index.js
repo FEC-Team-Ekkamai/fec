@@ -49,7 +49,7 @@ app.post('/api/products/id', (req, res) => {
      console.log(error);
      res.sendStatus(500);
    })
-})
+});
 
 app.post('/api/products/id/styles', (req, res) => {
   const options = {
@@ -96,16 +96,15 @@ app.get('/api/reviews/meta', (req, res) => {
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta`,
     headers: api,
     params: {product_id: id}
-    }
+  };
   axios(options)
    .then((response) => {
      res.send(response.data);
    })
    .catch((error) => {
-     console.log(error);
      res.sendStatus(500);
-   })
-})
+   });
+});
 
 app.put(`/api/reviews/:review_id/helpful`, (req, res) => {
   var reviewId = req.params.review_id;
@@ -148,9 +147,40 @@ app.put(`/api/reviews/:review_id/report`, (req, res) => {
 /**
  * These are the routes for Questions and Answers APIs
  */
+ app.get('/api/products/questions', (req, res) => {
+  let questionOptions = {
+    method: 'GET',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/?product_id=${req.query.product_id}`,
+    headers: api
+  };
+  axios(questionOptions)
+    .then(questions => {
+      res.send(questions.data);
+    })
+    .catch(error => {
+      res.status(500).send(error);
+    });
+});
+
+app.post('/api/products/questions', (req, res) => {
+  let questionOptions = {
+    method: 'POST',
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/',
+    headers: api,
+    data: req.body
+  };
+  axios(questionOptions)
+    .then(results => {
+      res.send(results.data);
+    })
+    .catch(error => {
+      res.status(500).send(error);
+    });
+});
+
 
 const port = 3000;
 
 app.listen(port, () => {
   console.log('You are listening on Port: 3000')
-})
+});
