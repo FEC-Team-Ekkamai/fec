@@ -1,8 +1,9 @@
 const express = require('express');
 const path = require('path');
 const axios = require('axios');
-const api = require('./config.js')
+//const api = require('./config.js')
 const app = express();
+const api =require('./token');
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
@@ -14,10 +15,15 @@ app.use(express.static(path.join(__dirname, '../public')));
 const options = {
   method: 'get',
   url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products`,
-  headers: {Authorization: api.TOKEN}
-};
+  headers: api
+}
 
 app.get('/api/products', (req, res) => {
+  const options = {
+    method: 'get',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products`,
+    headers: api
+    }
   axios(options)
    .then((response) => {
      res.send(response.data);
@@ -26,12 +32,40 @@ app.get('/api/products', (req, res) => {
      console.log(error);
      res.sendStatus(500);
    })
+})
+
+app.post('/api/products/id', (req, res) => {
+  const options = {
+    method: 'get',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.body.product}`,
+    headers: api
+    }
+  axios(options)
+   .then((response) => {
+     console.log(response.data)
+     res.send(response.data);
+   })
+   .catch((error) => {
+     console.log(error);
+     res.sendStatus(500);
+   })
 });
 
-app.post('/api/products', (req, res) => {
-  console.log('you got a post');
-  res.sendStatus(200);
-});
+app.post('/api/products/id/styles', (req, res) => {
+  const options = {
+    method: 'get',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.body.product}/styles`,
+    headers: api
+    }
+  axios(options)
+   .then((response) => {
+     res.send(response.data);
+   })
+   .catch((error) => {
+     console.log(error);
+     res.sendStatus(500);
+   })
+})
 
 
 /**
@@ -42,7 +76,25 @@ app.post('/api/products', (req, res) => {
   const options = {
     method: 'get',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/`,
-    headers: { Authorization: api.TOKEN },
+    headers: api,
+    params: {product_id: id}
+    }
+  axios(options)
+   .then((response) => {
+     res.send(response.data);
+   })
+   .catch((error) => {
+     console.log(error);
+     res.sendStatus(500);
+   })
+})
+
+app.get('/api/reviews/meta', (req, res) => {
+  var id = req.query.product_id;
+  const options = {
+    method: 'get',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta`,
+    headers: api,
     params: {product_id: id}
   };
   axios(options)
@@ -54,6 +106,44 @@ app.post('/api/products', (req, res) => {
    });
 });
 
+app.put(`/api/reviews/:review_id/helpful`, (req, res) => {
+  var reviewId = req.params.review_id;
+
+  const options = {
+    method: 'put',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${reviewId}/helpful`,
+    headers: api,
+    params: {review_id: reviewId}
+  }
+  axios(options)
+    .then((response) => {
+      res.send(response.data)
+    })
+    .catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+    })
+})
+
+app.put(`/api/reviews/:review_id/report`, (req, res) => {
+  var reviewId = req.params.review_id;
+
+  const options = {
+    method: 'put',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${reviewId}/report`,
+    headers: api,
+    params: {review_id: reviewId}
+  }
+  axios(options)
+    .then((response) => {
+      res.send(response.data)
+    })
+    .catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+    })
+})
+
 /**
  * These are the routes for Questions and Answers APIs
  */
@@ -61,7 +151,7 @@ app.post('/api/products', (req, res) => {
   let questionOptions = {
     method: 'GET',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/?product_id=${req.query.product_id}`,
-    headers: { Authorization: api.TOKEN }
+    headers: api
   };
   axios(questionOptions)
     .then(questions => {
@@ -76,9 +166,7 @@ app.post('/api/products/questions', (req, res) => {
   let questionOptions = {
     method: 'POST',
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/',
-    headers: {
-      Authorization: api.TOKEN,
-    },
+    headers: api,
     data: req.body
   };
   axios(questionOptions)

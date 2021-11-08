@@ -16,7 +16,7 @@ const StyledHelp = styled.div`
 
 const ReviewHelp = (props) => (
 <StyledHelp>
-  Helpful? Yes ( {props.helpfulness} ) | Report
+  Helpful? <span onClick = {(e) => props.handleHelpClick(e)}><u id = {props.id}>Yes ( {props.helpfulness} )</u></span>| <span onClick = {(e) => {props.handleReportClick(e)}}><u id = {props.id}>Report</u></span>
 </StyledHelp>
 )
 
