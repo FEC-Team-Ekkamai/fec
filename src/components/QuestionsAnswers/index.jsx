@@ -5,17 +5,21 @@ import QuestionsList from './QuestionsList/questionsList.jsx';
 import AddQuestion from './AddQuestion/index.jsx';
 
 class QuestionsView extends React.Component {
+
+
   constructor(props) {
+    const DEFAULT_QA_ELEMENTS_SHOWN = 2;
     super(props);
     this.state = {
       questions: [],
       displayedQuestions: [],
-      numQuestionsDisplayed: 2,
+      numQuestionsDisplayed: DEFAULT_QA_ELEMENTS_SHOWN,
     };
     this.handleQuestionSubmit = this.handleQuestionSubmit.bind(this);
     this.filterQuestions = this.filterQuestions.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleViewMore = this.handleViewMore.bind(this);
+    this.displayMoreQuestions = this.displayMoreQuestions.bind(this);
   }
 
   componentDidMount() {
@@ -36,6 +40,7 @@ class QuestionsView extends React.Component {
       .catch(console.error)
   }
 
+  // todo: if all questions are shown, "remove view" more button
   handleViewMore(event) {
     event.preventDefault();
     let numDisplayed = this.state.numQuestionsDisplayed;
@@ -58,6 +63,21 @@ class QuestionsView extends React.Component {
     });
   }
 
+  displayMoreQuestions() {
+    const numQuestions = this.state.questions.length;
+    if (this.state.numQuestionsDisplayed < numQuestions && numQuestions !== 0) {
+      return (
+        <button
+          className="view-more-questions"
+          onClick={this.handleViewMore}
+        >
+          More Answered Questions
+        </button>
+      );
+    }
+    return null;
+  }
+
   render() {
     return (
       <>
@@ -65,18 +85,15 @@ class QuestionsView extends React.Component {
           <h3>Questions &amp; Answers</h3>
           <Search onChange={this.handleChange} />
           <QuestionsList
+            viewMoreAnswers={this.handleViewMoreAnswers}
             numQuestionsDisplayed={this.state.numQuestionsDisplayed}
+            numAnswersDisplayed={this.state.numAnswersDisplayed}
             questions={this.state.displayedQuestions}
           />
         </div>
         <div className="questions-footer">
           <AddQuestion handleSubmit={this.handleQuestionSubmit}/>
-          <button
-            className="view-more-questions"
-            onClick={this.handleViewMore}
-          >
-              More Answered Questions
-          </button>
+          {this.displayMoreQuestions()}
         </div>
       </>
     );
