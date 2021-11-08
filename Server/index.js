@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 const options = {
   method: 'get',
   url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products`,
-  headers: {Authorization: api.TOKEN}
+  headers: {'Authorization': api.TOKEN}
 }
 
 app.get('/api/products', (req, res) => {
@@ -42,7 +42,7 @@ app.post('/api/products', (req, res) => {
   const options = {
     method: 'get',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/`,
-    headers: token,
+    headers: {Authorization: api.TOKEN},
     params: {product_id: id}
     }
   axios(options)
@@ -53,6 +53,62 @@ app.post('/api/products', (req, res) => {
      console.log(error);
      res.sendStatus(500);
    })
+})
+
+app.get('/api/reviews/meta', (req, res) => {
+  var id = req.query.product_id;
+  const options = {
+    method: 'get',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta`,
+    headers: {Authorization: api.TOKEN},
+    params: {product_id: id}
+    }
+  axios(options)
+   .then((response) => {
+     res.send(response.data);
+   })
+   .catch((error) => {
+     console.log(error);
+     res.sendStatus(500);
+   })
+})
+
+app.put(`/api/reviews/:review_id/helpful`, (req, res) => {
+  var reviewId = req.params.review_id;
+
+  const options = {
+    method: 'put',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${reviewId}/helpful`,
+    headers: {Authorization: api.TOKEN},
+    params: {review_id: reviewId}
+  }
+  axios(options)
+    .then((response) => {
+      res.send(response.data)
+    })
+    .catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+    })
+})
+
+app.put(`/api/reviews/:review_id/report`, (req, res) => {
+  var reviewId = req.params.review_id;
+
+  const options = {
+    method: 'put',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${reviewId}/report`,
+    headers: {Authorization: api.TOKEN},
+    params: {review_id: reviewId}
+  }
+  axios(options)
+    .then((response) => {
+      res.send(response.data)
+    })
+    .catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+    })
 })
 
 /**

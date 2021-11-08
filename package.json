@@ -15,13 +15,11 @@
     "axios": "^0.24.0",
     "express": "^4.17.1",
     "moment": "^2.29.1",
-<<<<<<< HEAD
     "nodemon": "^2.0.14",
     "path": "^0.12.7",
-=======
->>>>>>> bd5f112339cc4d58e9fd4f8547b5344afc89cba1
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
     "styled-components": "^5.3.3"
   },
   "devDependencies": {
@@ -35,13 +33,7 @@
     "jest": "^27.3.1",
     "react-test-renderer": "^17.0.2",
     "webpack": "^4.46.0",
-<<<<<<< HEAD
     "webpack-cli": "^4.9.1",
     "webpack-dev": "^1.1.1"
-  },
-  "devDependencies": {}
-=======
-    "webpack-cli": "^4.9.1"
   }
->>>>>>> bd5f112339cc4d58e9fd4f8547b5344afc89cba1
 }
