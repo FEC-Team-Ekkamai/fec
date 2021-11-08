@@ -1,9 +1,9 @@
 const express = require('express');
 const path = require('path');
 const axios = require('axios');
-const api = require('./config.js')
+//const api = require('./config.js')
 const app = express();
-//const token =require('./token');
+const api =require('./token');
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
