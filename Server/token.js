@@ -1,3 +1,3 @@
-const token = {Authorization:'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'};
+const token = {Authorization:'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'};
 
 module.exports = token;
