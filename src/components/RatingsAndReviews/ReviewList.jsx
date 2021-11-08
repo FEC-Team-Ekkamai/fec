@@ -89,11 +89,7 @@ class ReviewList extends React.Component {
     return (
       <div>
         {hasReviews !== 0
-<<<<<<< HEAD
-            ? this.state.productReviews.map((review) => <ReviewListEntry review={review} handleHelpClick = {this.handleHelpClick} handleReportClick = {this.handleReportClick}/>)
-=======
-            ? this.state.productReviews.map((review, i) => <ReviewListEntry review={review} key={i}/>)
->>>>>>> b21de7f8c77828b0c2e2dbc8aa88b143711f776d
+            ? this.state.productReviews.map((review, i) => <ReviewListEntry review={review} handleHelpClick = {this.handleHelpClick} handleReportClick = {this.handleReportClick} key = {i})
             : null
           }
           <MoreReviews />

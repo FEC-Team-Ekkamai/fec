@@ -67,7 +67,6 @@ class App extends React.Component {
   }
 
   render() {
-    const hasFirstProduct = Object.keys(this.state.firstProductShown);
     return (
       <div>
         This is the FEC app
