@@ -53,7 +53,7 @@ const Modal = (props) => {
           <Form onSubmit={props.onSubmit}/>
         </Body>
         <Footer>
-          <Button onClick={props.onClose}>Submit</Button>
+          <Button onClick={props.onClose}>Close</Button>
         </Footer>
       </div>
     </ModalContainer  >
