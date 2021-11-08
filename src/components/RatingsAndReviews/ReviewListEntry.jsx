@@ -16,13 +16,13 @@ const StyledEntry = styled.div`
 
 
 const ReviewListEntry = (props) => (
-<StyledEntry>
+<StyledEntry id = {props.review.review_id}>
   <ReviewDate date = {new Date(props.review.date).toLocaleDateString(undefined, {year: 'numeric', month: 'long', day: 'numeric'})} username = {props.review.reviewer_name} />
   <ReviewTitle title = {props.review.summary}/>
   <ReviewBody body = {props.review.body}/>
   <ReviewRecommendation recommend = {props.review.recommend} />
   <ReviewResponse response = {props.review.response} />
-  <ReviewHelp helpfulness = {props.review.helpfulness}/>
+  <ReviewHelp id = {props.review.review_id} helpfulness = {props.review.helpfulness} handleHelpClick = {props.handleHelpClick} handleReportClick = {props.handleReportClick}/>
 </StyledEntry>
 )
 
