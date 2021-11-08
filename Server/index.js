@@ -3,6 +3,7 @@ const path = require('path');
 const axios = require('axios');
 const api = require('./config.js')
 const app = express();
+//const token =require('./token');
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
@@ -14,10 +15,15 @@ app.use(express.static(path.join(__dirname, '../public')));
 const options = {
   method: 'get',
   url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products`,
-  headers: {'Authorization': api.TOKEN}
+  headers: api
 }
 
 app.get('/api/products', (req, res) => {
+  const options = {
+    method: 'get',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products`,
+    headers: api
+    }
   axios(options)
    .then((response) => {
      res.send(response.data);
@@ -28,9 +34,37 @@ app.get('/api/products', (req, res) => {
    })
 })
 
-app.post('/api/products', (req, res) => {
-  console.log('you got a post');
-  res.sendStatus(200);
+app.post('/api/products/id', (req, res) => {
+  const options = {
+    method: 'get',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.body.product}`,
+    headers: api
+    }
+  axios(options)
+   .then((response) => {
+     console.log(response.data)
+     res.send(response.data);
+   })
+   .catch((error) => {
+     console.log(error);
+     res.sendStatus(500);
+   })
+})
+
+app.post('/api/products/id/styles', (req, res) => {
+  const options = {
+    method: 'get',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${req.body.product}/styles`,
+    headers: api
+    }
+  axios(options)
+   .then((response) => {
+     res.send(response.data);
+   })
+   .catch((error) => {
+     console.log(error);
+     res.sendStatus(500);
+   })
 })
 
 
@@ -42,7 +76,7 @@ app.post('/api/products', (req, res) => {
   const options = {
     method: 'get',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/`,
-    headers: {Authorization: api.TOKEN},
+    headers: api,
     params: {product_id: id}
     }
   axios(options)
@@ -60,7 +94,7 @@ app.get('/api/reviews/meta', (req, res) => {
   const options = {
     method: 'get',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta`,
-    headers: {Authorization: api.TOKEN},
+    headers: api,
     params: {product_id: id}
     }
   axios(options)
@@ -79,7 +113,7 @@ app.put(`/api/reviews/:review_id/helpful`, (req, res) => {
   const options = {
     method: 'put',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${reviewId}/helpful`,
-    headers: {Authorization: api.TOKEN},
+    headers: api,
     params: {review_id: reviewId}
   }
   axios(options)
@@ -98,7 +132,7 @@ app.put(`/api/reviews/:review_id/report`, (req, res) => {
   const options = {
     method: 'put',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${reviewId}/report`,
-    headers: {Authorization: api.TOKEN},
+    headers: api,
     params: {review_id: reviewId}
   }
   axios(options)
