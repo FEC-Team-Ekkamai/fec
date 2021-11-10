@@ -15,11 +15,10 @@ class QuestionsView extends React.Component {
       displayedQuestions: [],
       numQuestionsDisplayed: DEFAULT_QA_ELEMENTS_SHOWN,
     };
-    this.handleQuestionSubmit = this.handleQuestionSubmit.bind(this);
     this.filterQuestions = this.filterQuestions.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleViewMore = this.handleViewMore.bind(this);
-    this.displayMoreQuestions = this.displayMoreQuestions.bind(this);
+    this.displayMoreQuestionsButton = this.displayMoreQuestionsButton.bind(this);
   }
 
   componentDidMount() {
@@ -31,16 +30,6 @@ class QuestionsView extends React.Component {
     .catch(console.error)
   }
 
-  // change name
-  handleQuestionSubmit(event, body) {
-    event.preventDefault();
-    body.product_id = this.props.productId;
-    axios.post('/api/products/questions', body)
-      .then(console.log)  // maybe perform redirection here or create 'success' modal
-      .catch(console.error)
-  }
-
-  // todo: if all questions are shown, "remove view" more button
   handleViewMore(event) {
     event.preventDefault();
     let numDisplayed = this.state.numQuestionsDisplayed;
@@ -63,7 +52,7 @@ class QuestionsView extends React.Component {
     });
   }
 
-  displayMoreQuestions() {
+  displayMoreQuestionsButton() {
     const numQuestions = this.state.questions.length;
     if (this.state.numQuestionsDisplayed < numQuestions && numQuestions !== 0) {
       return (
@@ -92,8 +81,8 @@ class QuestionsView extends React.Component {
           />
         </div>
         <div className="questions-footer">
-          <AddQuestion handleSubmit={this.handleQuestionSubmit}/>
-          {this.displayMoreQuestions()}
+          <AddQuestion productId={this.props.productId} />
+          {this.displayMoreQuestionsButton()}
         </div>
       </>
     );
