@@ -170,6 +170,34 @@ app.post('/api/products/questions', (req, res) => {
     });
 });
 
+app.put('/api/products/questions/helpful', (req, res) => {
+  let questionOptions = {
+    method: 'PUT',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.body.question_id}/helpful`,
+    headers: api,
+    data: req.body
+  };
+  axios(questionOptions)
+    .then(() => { res.status(204).send(); })
+    .catch(error => {
+      res.status(500).send(error);
+    });
+});
+
+app.put('/api/products/questions/report', (req, res) => {
+  let questionOptions = {
+    method: 'PUT',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.body.question_id}/report`,
+    headers: api,
+    data: req.body
+  };
+  axios(questionOptions)
+    .then(() => { res.status(204).send(); })
+    .catch(error => {
+      res.status(500).send(error);
+    });
+});
+
 app.post('/api/products/questions/answers', (req, res) => {
   let questionOptions = {
     method: 'POST',
@@ -186,35 +214,7 @@ app.post('/api/products/questions/answers', (req, res) => {
     });
 });
 
-app.put('/api/products/questions/helpful', (req, res) => {
-  let questionOptions = {
-    method: 'PUT',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.body.question_id}/helpful`,
-    headers: api,
-    data: req.body
-  };
-  axios(questionOptions)
-    .then(() => { res.send(); })
-    .catch(error => {
-      res.status(500).send(error);
-    });
-});
-
-app.put('/api/products/questions/report', (req, res) => {
-  let questionOptions = {
-    method: 'PUT',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.body.question_id}/report`,
-    headers: api,
-    data: req.body
-  };
-  axios(questionOptions)
-    .then(() => { res.send(); })
-    .catch(error => {
-      res.status(500).send(error);
-    });
-});
-
-app.put('/api/products/answer/helpful', (req, res) => {
+app.put('/api/products/answers/helpful', (req, res) => {
   let questionOptions = {
     method: 'PUT',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/answers/${req.body.answer_id}/helpful`,
@@ -222,7 +222,7 @@ app.put('/api/products/answer/helpful', (req, res) => {
     data: req.body
   };
   axios(questionOptions)
-    .then(() => { res.send(); })
+    .then(() => { res.status(204).send(); })
     .catch(error => {
       res.status(500).send(error);
     });
@@ -236,7 +236,7 @@ app.put('/api/products/answers/report', (req, res) => {
     data: req.body
   };
   axios(questionOptions)
-    .then(() => { res.send(); })
+    .then(() => { res.status(204).send(); })
     .catch(error => {
       res.status(500).send(error);
     });
