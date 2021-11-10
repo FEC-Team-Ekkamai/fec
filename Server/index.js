@@ -142,7 +142,7 @@ app.put(`/api/reviews/:review_id/report`, (req, res) => {
  app.get('/api/products/questions', (req, res) => {
   let questionOptions = {
     method: 'GET',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/?product_id=${req.query.product_id}`,
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/?product_id=${req.query.product_id}&count=100`,
     headers: api
   };
   axios(questionOptions)
