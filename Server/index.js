@@ -28,7 +28,6 @@ app.get('/api/products', (req, res) => {
      res.send(response.data);
    })
    .catch((error) => {
-     console.log(error);
      res.sendStatus(500);
    })
 })
@@ -41,11 +40,9 @@ app.post('/api/products/id', (req, res) => {
     }
   axios(options)
    .then((response) => {
-     console.log(response.data)
      res.send(response.data);
    })
    .catch((error) => {
-     console.log(error);
      res.sendStatus(500);
    })
 });
@@ -61,7 +58,6 @@ app.post('/api/products/id/styles', (req, res) => {
      res.send(response.data);
    })
    .catch((error) => {
-     console.log(error);
      res.sendStatus(500);
    })
 })
@@ -83,7 +79,6 @@ app.post('/api/products/id/styles', (req, res) => {
      res.send(response.data);
    })
    .catch((error) => {
-     console.log(error);
      res.sendStatus(500);
    })
 })
@@ -119,7 +114,6 @@ app.put(`/api/reviews/:review_id/helpful`, (req, res) => {
       res.send(response.data)
     })
     .catch((error) => {
-      console.log(error);
       res.sendStatus(500);
     })
 })
@@ -138,7 +132,6 @@ app.put(`/api/reviews/:review_id/report`, (req, res) => {
       res.send(response.data)
     })
     .catch((error) => {
-      console.log(error);
       res.sendStatus(500);
     })
 })
@@ -195,15 +188,13 @@ app.post('/api/products/questions/answers', (req, res) => {
 
 app.put('/api/products/questions/helpful', (req, res) => {
   let questionOptions = {
-    method: 'POST',
+    method: 'PUT',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.body.question_id}/helpful`,
     headers: api,
     data: req.body
   };
   axios(questionOptions)
-    .then(results => {
-      res.send(results.data);
-    })
+    .then(() => { res.send(); })
     .catch(error => {
       res.status(500).send(error);
     });
@@ -211,15 +202,13 @@ app.put('/api/products/questions/helpful', (req, res) => {
 
 app.put('/api/products/questions/report', (req, res) => {
   let questionOptions = {
-    method: 'POST',
+    method: 'PUT',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.body.question_id}/report`,
     headers: api,
     data: req.body
   };
   axios(questionOptions)
-    .then(results => {
-      res.send(results.data);
-    })
+    .then(() => { res.send(); })
     .catch(error => {
       res.status(500).send(error);
     });
@@ -227,15 +216,13 @@ app.put('/api/products/questions/report', (req, res) => {
 
 app.put('/api/products/answer/helpful', (req, res) => {
   let questionOptions = {
-    method: 'POST',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.body.answer_id}/helpful`,
+    method: 'PUT',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/answers/${req.body.answer_id}/helpful`,
     headers: api,
     data: req.body
   };
   axios(questionOptions)
-    .then(results => {
-      res.send(results.data);
-    })
+    .then(() => { res.send(); })
     .catch(error => {
       res.status(500).send(error);
     });
@@ -243,15 +230,13 @@ app.put('/api/products/answer/helpful', (req, res) => {
 
 app.put('/api/products/answers/report', (req, res) => {
   let questionOptions = {
-    method: 'POST',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.body.answer_id}/report`,
+    method: 'PUT',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/answers/${req.body.answer_id}/report`,
     headers: api,
     data: req.body
   };
   axios(questionOptions)
-    .then(results => {
-      res.send(results.data);
-    })
+    .then(() => { res.send(); })
     .catch(error => {
       res.status(500).send(error);
     });
