@@ -11,7 +11,6 @@ class Questions extends React.Component {
   }
 
   handleViewMoreAnswers(event) {
-    console.log('Clicked view more answers');
     event.preventDefault();
     let numDisplayed = this.state.numAnswersDisplayed;
     this.setState({
@@ -32,27 +31,27 @@ class Questions extends React.Component {
   }
 
   render() {
-    return(
+    const answers = Object.values(this.props.question.answers)
+                          .slice(0, this.state.numAnswersDisplayed);
+    return (
       <li key={this.props.question.question_id}>
-          <div className="question-body">
-            <span className="question-header">
-              <b>Q: {this.props.question.question_body}</b>
-            </span>
-            <span>   Helpful? <u>Yes</u> ({this.props.question.question_helpfulness}) | <u>Add an Answer</u></span>
+        <div className="question-body">
+          <span className="question-header">
+            <b>Q: {this.props.question.question_body}</b>
+          </span>
+          <span>   Helpful? <u>Yes</u> ({this.props.question.question_helpfulness}) |</span>
+        </div>
+        <div className="answer-container">
+          <ul>
+            {answers.map(answer => (
+              <Answers key={answer.id} answer={answer} />
+            ))}
+          </ul>
+          <div>
+            {this.displayLoadAnswers()}
           </div>
-          <div className="answer-container">
-            <ul>
-              {Object.values(this.props.question.answers).map((answer, index) => (
-                index <  this.state.numAnswersDisplayed
-                  ? <Answers key={answer.id} answer={answer} />
-                  : null
-              ))}
-            </ul>
-            <div>
-              {this.displayLoadAnswers()}
-            </div>
-          </div>
-        </li>
+        </div>
+      </li>
     );
   }
 }
