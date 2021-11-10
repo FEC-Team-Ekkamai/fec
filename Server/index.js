@@ -177,6 +177,21 @@ app.post('/api/products/questions', (req, res) => {
     });
 });
 
+app.post('/api/products/questions/answers', (req, res) => {
+  let questionOptions = {
+    method: 'POST',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.body.question_id}/answers`,
+    headers: api,
+    data: req.body
+  };
+  axios(questionOptions)
+    .then(results => {
+      res.send(results.data);
+    })
+    .catch(error => {
+      res.status(500).send(error);
+    });
+});
 
 const port = 3000;
 
