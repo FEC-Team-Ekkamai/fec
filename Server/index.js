@@ -198,7 +198,23 @@ app.put('/api/products/questions/helpful', (req, res) => {
     method: 'POST',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.body.question_id}/helpful`,
     headers: api,
-    data: req.body // { question_id}
+    data: req.body
+  };
+  axios(questionOptions)
+    .then(results => {
+      res.send(results.data);
+    })
+    .catch(error => {
+      res.status(500).send(error);
+    });
+});
+
+app.put('/api/products/questions/report', (req, res) => {
+  let questionOptions = {
+    method: 'POST',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.body.question_id}/report`,
+    headers: api,
+    data: req.body
   };
   axios(questionOptions)
     .then(results => {
@@ -214,7 +230,7 @@ app.put('/api/products/answer/helpful', (req, res) => {
     method: 'POST',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.body.answer_id}/helpful`,
     headers: api,
-    data: req.body // { question_id}
+    data: req.body
   };
   axios(questionOptions)
     .then(results => {
