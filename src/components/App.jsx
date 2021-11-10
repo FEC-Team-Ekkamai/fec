@@ -69,8 +69,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        This is the FEC app
+      <div style={{background: 'tan'}}>
         {this.state.styles !== null
             ? <ProductDetail currentProduct={this.state.firstProductShown} styles={this.state.styles}/>
             : null

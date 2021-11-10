@@ -18,7 +18,7 @@ var  ProductInfo = (props) => {
       <MadeOf>
         <ul style={{listStyleType: 'none'}}>
           <MadeOfList><span>&#10003;</span> GMO and Pesticide-free</MadeOfList>
-          <MadeOfList><span>&#10003;</span> Made with 100% Genetic Modification</MadeOfList>
+          <MadeOfList><span>&#10003;</span> What am I doing</MadeOfList>
           <MadeOfList><span>&#10003;</span> This is made up</MadeOfList>
           <MadeOfList><span>&#10003;</span> It doesnt matter</MadeOfList>
         </ul>
