@@ -1,6 +1,6 @@
 import React from 'react';
-import Modal from './modal.jsx';
-
+import Modal from './../modal.jsx'
+import Form from './questionForm.jsx';
 
 class AddQuestion extends React.Component {
   constructor(props) {
@@ -24,10 +24,12 @@ class AddQuestion extends React.Component {
     return (
       <div>
         <Modal
-          onSubmit={this.props.handleSubmit}
+          headerText={'Question'}
           view={this.state.showModal}
           onClose={this.onClose}
-        />
+        >
+          <Form productId={this.props.productId}/>
+        </Modal>
         <button
           className="add-question"
           onClick={this.handleClick}
