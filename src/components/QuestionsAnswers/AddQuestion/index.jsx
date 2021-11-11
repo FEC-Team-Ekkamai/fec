@@ -28,7 +28,10 @@ class AddQuestion extends React.Component {
           view={this.state.showModal}
           onClose={this.onClose}
         >
-          <Form productId={this.props.productId}/>
+          <Form
+            productId={this.props.productId}
+            getQuestions={this.props.getQuestions}
+          />
         </Modal>
         <button
           className="add-question"

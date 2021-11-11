@@ -30,7 +30,7 @@ class QuestionForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     axios.post('/api/products/questions', this.state)
-      .then(console.log)
+      .then(() => { this.props.getQuestions(); console.log('worked!')})
       .catch(console.error)
   }
 
