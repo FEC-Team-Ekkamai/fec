@@ -58,14 +58,21 @@ class Questions extends React.Component {
             <b>Q: {this.props.question.question_body}</b>
           </span>
           <span>   Helpful? <u onClick={this.handleHelpfulClick}>Yes</u> ({this.props.question.question_helpfulness}) | </span>
-          <AddAnswer questionId={this.props.question.question_id}/>
+          <AddAnswer
+            questionId={this.props.question.question_id}
+            getQuestions={this.props.getQuestions}
+          />
           <span onClick={this.handleReport}>Report</span>
         </div>
         <div className="answer-container">
         <div className="answer-identifier">A:</div>
           <ul>
             {answers.map(answer => (
-              <Answers key={answer.id} answer={answer} />
+              <Answers
+                key={answer.id}
+                answer={answer}
+                getQuestions={this.props.getQuestions}
+              />
             ))}
           </ul>
           <div>
