@@ -13,10 +13,11 @@ const QuestionsList = (props) => {
       <ul>
         {props.questions.slice(0, props.numQuestionsDisplayed).map(question => (
           <Questions
-            question={question}
             numAnswersDisplayed={props.numAnswersDisplayed}
+            getQuestions={props.getQuestions}
             viewMoreAnswers={props.viewMoreAnswers}
             key={question.question_id}
+            question={question}
           />
         ))}
       </ul>

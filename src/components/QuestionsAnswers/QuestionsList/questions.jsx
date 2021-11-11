@@ -11,6 +11,7 @@ class Questions extends React.Component {
     };
     this.handleViewMoreAnswers = this.handleViewMoreAnswers.bind(this);
     this.handleHelpfulClick = this.handleHelpfulClick.bind(this);
+    this.handleReport = this.handleReport.bind(this);
   }
 
   handleViewMoreAnswers(event) {
@@ -36,7 +37,14 @@ class Questions extends React.Component {
   handleHelpfulClick() {
     const id = { question_id: this.props.question.question_id}
     axios.put('/api/products/questions/helpful', id)
-      .then(() => console.log('helpful success'))
+      .then(() => {this.props.getQuestions()})
+      .catch(console.error);
+  }
+
+  handleReport() {
+    const id = { question_id: this.props.question.question_id}
+    axios.put('/api/products/questions/report', id)
+      .then(() => {this.props.getQuestions()})
       .catch(console.error);
   }
 
@@ -50,7 +58,8 @@ class Questions extends React.Component {
             <b>Q: {this.props.question.question_body}</b>
           </span>
           <span>   Helpful? <u onClick={this.handleHelpfulClick}>Yes</u> ({this.props.question.question_helpfulness}) | </span>
-          <AddAnswer />
+          <AddAnswer questionId={this.props.question.question_id}/>
+          <span onClick={this.handleReport}>Report</span>
         </div>
         <div className="answer-container">
         <div className="answer-identifier">A:</div>
