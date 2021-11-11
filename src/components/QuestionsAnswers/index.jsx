@@ -5,8 +5,6 @@ import QuestionsList from './QuestionsList/questionsList.jsx';
 import AddQuestion from './AddQuestion/index.jsx';
 
 class QuestionsView extends React.Component {
-
-
   constructor(props) {
     const DEFAULT_QA_ELEMENTS_SHOWN = 2;
     super(props);
@@ -19,9 +17,16 @@ class QuestionsView extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleViewMore = this.handleViewMore.bind(this);
     this.displayMoreQuestionsButton = this.displayMoreQuestionsButton.bind(this);
+    this.getQuestions = this.getQuestions.bind(this);
   }
 
   componentDidMount() {
+    console.log(this.props.productId, '<');
+    this.getQuestions();
+  }
+
+  getQuestions() {
+    console.log('called');
     axios.get(`/api/products/questions/?product_id=${this.props.productId}`)
     .then(questions => {
       this.setState({ questions: questions.data.results });
@@ -74,6 +79,7 @@ class QuestionsView extends React.Component {
           <h3>Questions &amp; Answers</h3>
           <Search onChange={this.handleChange} />
           <QuestionsList
+            getQuestions={this.getQuestions}
             viewMoreAnswers={this.handleViewMoreAnswers}
             numQuestionsDisplayed={this.state.numQuestionsDisplayed}
             numAnswersDisplayed={this.state.numAnswersDisplayed}
@@ -81,7 +87,10 @@ class QuestionsView extends React.Component {
           />
         </div>
         <div className="questions-footer">
-          <AddQuestion productId={this.props.productId} />
+          <AddQuestion
+            getQuestions={this.getQuestions}
+            productId={this.props.productId}
+          />
           {this.displayMoreQuestionsButton()}
         </div>
       </>
