@@ -1,9 +1,8 @@
 const express = require('express');
+const api =require('./config.js');
 const path = require('path');
 const axios = require('axios');
-const api = require('./config.js')
 const app = express();
-
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
@@ -29,7 +28,6 @@ app.get('/api/products', (req, res) => {
      res.send(response.data);
    })
    .catch((error) => {
-     console.log(error);
      res.sendStatus(500);
    })
 })
@@ -42,11 +40,9 @@ app.post('/api/products/id', (req, res) => {
     }
   axios(options)
    .then((response) => {
-     console.log(response.data)
      res.send(response.data);
    })
    .catch((error) => {
-     console.log(error);
      res.sendStatus(500);
    })
 });
@@ -62,7 +58,6 @@ app.post('/api/products/id/styles', (req, res) => {
      res.send(response.data);
    })
    .catch((error) => {
-     console.log(error);
      res.sendStatus(500);
    })
 })
@@ -84,7 +79,6 @@ app.post('/api/products/id/styles', (req, res) => {
      res.send(response.data);
    })
    .catch((error) => {
-     console.log(error);
      res.sendStatus(500);
    })
 })
@@ -120,7 +114,6 @@ app.put(`/api/reviews/:review_id/helpful`, (req, res) => {
       res.send(response.data)
     })
     .catch((error) => {
-      console.log(error);
       res.sendStatus(500);
     })
 })
@@ -139,7 +132,6 @@ app.put(`/api/reviews/:review_id/report`, (req, res) => {
       res.send(response.data)
     })
     .catch((error) => {
-      console.log(error);
       res.sendStatus(500);
     })
 })
@@ -150,7 +142,7 @@ app.put(`/api/reviews/:review_id/report`, (req, res) => {
  app.get('/api/products/questions', (req, res) => {
   let questionOptions = {
     method: 'GET',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/?product_id=${req.query.product_id}`,
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/?product_id=${req.query.product_id}&count=100`,
     headers: api
   };
   axios(questionOptions)
@@ -178,6 +170,77 @@ app.post('/api/products/questions', (req, res) => {
     });
 });
 
+app.put('/api/products/questions/helpful', (req, res) => {
+  let questionOptions = {
+    method: 'PUT',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.body.question_id}/helpful`,
+    headers: api,
+    data: req.body
+  };
+  axios(questionOptions)
+    .then(() => { res.status(204).send(); })
+    .catch(error => {
+      res.status(500).send(error);
+    });
+});
+
+app.put('/api/products/questions/report', (req, res) => {
+  let questionOptions = {
+    method: 'PUT',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.body.question_id}/report`,
+    headers: api,
+    data: req.body
+  };
+  axios(questionOptions)
+    .then(() => { res.status(204).send(); })
+    .catch(error => {
+      res.status(500).send(error);
+    });
+});
+
+app.post('/api/products/questions/answers', (req, res) => {
+  let questionOptions = {
+    method: 'POST',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${req.body.question_id}/answers`,
+    headers: api,
+    data: req.body
+  };
+  axios(questionOptions)
+    .then(results => {
+      res.send(results.data);
+    })
+    .catch(error => {
+      res.status(500).send(error);
+    });
+});
+
+app.put('/api/products/answers/helpful', (req, res) => {
+  let questionOptions = {
+    method: 'PUT',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/answers/${req.body.answer_id}/helpful`,
+    headers: api,
+    data: req.body
+  };
+  axios(questionOptions)
+    .then(() => { res.status(204).send(); })
+    .catch(error => {
+      res.status(500).send(error);
+    });
+});
+
+app.put('/api/products/answers/report', (req, res) => {
+  let questionOptions = {
+    method: 'PUT',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/answers/${req.body.answer_id}/report`,
+    headers: api,
+    data: req.body
+  };
+  axios(questionOptions)
+    .then(() => { res.status(204).send(); })
+    .catch(error => {
+      res.status(500).send(error);
+    });
+});
 
 const port = 3000;
 

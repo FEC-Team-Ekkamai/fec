@@ -1,21 +1,23 @@
 import React from 'react';
-import Form from './form.jsx';
 import styled, { css } from 'styled-components';
 
 const ModalContainer  = styled.div`
   background: white;
+  position: fixed;
+  top: 0%;
+  left: 20%;
   border: 1px solid #d0cccc;
   box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
-  margin: 100px auto 0;
-  transition: all .8s;
+  margin: auto 0;
+  margin-top: 3rem;
   width: 60%;
-  border-radius: 10px;
+  z-index: 5;
 `;
 
 const Body = styled.div`
   padding: 10px 15px;
   text-align: center;
-  height:200px;
+  height: 30%;
 `;
 
 const Header = styled.div`
@@ -25,20 +27,19 @@ const Header = styled.div`
   padding: 5px 20px;
   text-align: right;
   margin: 0;
-  padding: 0;
+  padding: 1rem;
 `;
 
 const Footer = styled.div`
   background: #e2e2e2;
-  height: 35px;
-  padding: 15px;
+  height: 15%;
+  padding: 1.5rem;
 `;
 
 const Button = styled.button`
-  color: black;
-  cursor: pointer;
-  float: right;
-  margin: 0;
+  background: transparent;
+  margin-right: 0 auto;
+  border: solid 1px black;
 `;
 
 const Modal = (props) => {
@@ -48,16 +49,14 @@ const Modal = (props) => {
   return (
     <ModalContainer className="modal-container">
       <div className="container">
-        <Header>Submit a Question</Header>
-        <Body className="body">
-          <Form onSubmit={props.onSubmit}/>
-        </Body>
+        <Header>Submit a {props.headerText}</Header>
+        <Body className="body">{props.children}</Body>
         <Footer>
           <Button onClick={props.onClose}>Close</Button>
         </Footer>
       </div>
-    </ModalContainer  >
-  )
+    </ModalContainer>
+  );
 };
 
 export default Modal;
