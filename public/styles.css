@@ -65,22 +65,28 @@ Styling for src/components/ProductDetail/Main.jsx
   margin: auto;
   justify-content: center;
  }
+
  .saleHeader {
    text-align: center;
  }
+
  .productInfo {
    margin-bottom: 20px;
    width: 1000px;
    background-color: #9EB7C1;
    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
  }
+
  /******************************************/
+
  /*
 Styling for src/components/ProductDetail/AddToCart
 */
+
 .dropdowns {
   display: flex;
 }
+
 .dropdownContainer {
   padding: 10px;
   margin-left: 12px;
@@ -96,10 +102,13 @@ Styling for src/components/ProductDetail/AddToCart
   width: 150px;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
 }
+
  /******************************************/
+
  /*
 Styling for src/components/ProductDetail/ImageGallery
 */
+
 .galleryContainer {
 position: relative;
 height: 600px;
@@ -159,13 +168,17 @@ width: 44px;
 margin-left: 5px;
 border-top: 2px solid black;
 }
+
  /******************************************/
+
  /*
 Styling for src/components/ProductDetail/ProductInfo
 */
+
 .productInfoContainer {
   margin: 0;
 }
+
 .description {
   width: 69%;
   height: 150px;
@@ -177,25 +190,32 @@ Styling for src/components/ProductDetail/ProductInfo
   padding-top: 3px;
   margin: 10px;
 }
+
 .descriptionText {
   margin: 10px;
 }
+
 .madeOfContainer {
   width: 30%;
   height: 150px;
   float: left;
   border-left: 1px solid black;
 }
+
 .madeOf {
   list-style-type: none;
 }
+
 .madeOfEntry {
   padding-bottom: 10px;
 }
+
  /******************************************/
+
  /*
 Styling for src/components/ProductDetail/StyleSelector
 */
+
 .styleContainer {
   position: relative;
   height: 400px;
@@ -220,9 +240,11 @@ Styling for src/components/ProductDetail/StyleSelector
   color: #4B4B4B;
   margin-bottom: 10px;
 }
+
 .style {
   padding-left: 15px; padding-bottom: 5px;
 }
+
 .thumbnailPhotos {
 display: grid;
 grid-template-columns: repeat(4, 25%);
@@ -262,7 +284,6 @@ box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
 
 /* Question and Answers */
 
