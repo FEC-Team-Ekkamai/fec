@@ -2,31 +2,33 @@ import React from 'react';
 import CarouselEntry from './CarouselEntry.jsx';
 
 var  ImageGallery = (props) => {
+  var photosLength = props.styles.results[props.currentStyle].photos.length
   return (
-    <div style={{position: 'relative', height: '600px', width: '600px', background: 'gray'}}>
-
-
-      <div style={{display: 'grid', top: '50%', zIndex: '2', position: 'absolute', left: '10px', transform: 'translate(0,-50%)', textAlign: 'center'}}>
-        {'^'}
+    <div className="galleryContainer">
+      <div className="imageCarousel">
+        {photosLength > 7 ? <div onClick={() => {props.changeMaxMin(-1)}}>{'^'}</div> : null}
         {props.styles.results[props.currentStyle].photos.map((photo, i) => {
           return (
-            <CarouselEntry photo={photo} key={i} index={i} getSelectedPhoto={props.getSelectedPhoto}/>
+            <CarouselEntry
+            key={i}
+            index={i}
+            photo={photo}
+            max={props.max}
+            min={props.min}
+            changeMaxMin={props.changeMaxMin}
+            currentPhoto={props.currentPhoto}
+            getSelectedPhoto={props.getSelectedPhoto} />
           )
         })}
-        {'v'}
+        {photosLength > 7 ? <div onClick={() => {props.changeMaxMin(1)}}>{'∨'}</div> : null}
       </div>
-
-
-      <div style={{transform: 'translate(0,-50%)', top: '50%', right: '10px', zIndex: '2', position: 'absolute'}}>
+      <div className="prevNext">
         <button onClick={() => {props.getNextPhoto(-1)}}>{'<'}</button>
         <button onClick={() => {props.getNextPhoto(1)}}>{'>'}</button>
       </div>
-
-
-      <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: '1', height: '100%'}}>
-        <img src={props.styles.results[props.currentStyle].photos[props.currentPhoto].url} style={{maxWidth: '100%', maxHeight: '100%', margin: 'auto', display: 'block'}} onClick={() => {props.changeView(1)}}/>
+      <div className="mainImageContainer">
+        <img className="mainImage" src={props.styles.results[props.currentStyle].photos[props.currentPhoto].url} onClick={() => {props.changeView(1)}}/>
       </div>
-
     </div>
   )
 }

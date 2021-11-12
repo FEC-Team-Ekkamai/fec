@@ -13,6 +13,8 @@ class ProductDetail extends React.Component {
       selectedStyle: 0,
       selectedPhoto: 0,
       availableQuantity: 0,
+      carouselMin: 0,
+      carouselMax: 6,
       view: 'main'
     }
     this.getAvailableQuantity = this.getAvailableQuantity.bind(this);
@@ -20,6 +22,7 @@ class ProductDetail extends React.Component {
     this.getNextPhoto = this.getNextPhoto.bind(this);
     this.getSelectedPhoto = this.getSelectedPhoto.bind(this);
     this.changeView = this.changeView.bind(this);
+    this.changeMaxMin = this.changeMaxMin.bind(this);
   }
 
   getAvailableQuantity () {
@@ -35,15 +38,16 @@ class ProductDetail extends React.Component {
   }
 
   getNextPhoto (num) {
+    var lastPhoto = this.props.styles.results[this.state.selectedStyle].photos.length - 1
     if (num > 0) {
-      if (this.state.selectedPhoto === 5) {
+      if (this.state.selectedPhoto === lastPhoto) {
         this.setState({selectedPhoto: 0})
       } else {
         this.setState({selectedPhoto: this.state.selectedPhoto + 1})
       }
     } else {
       if (this.state.selectedPhoto === 0) {
-        this.setState({selectedPhoto: this.props.styles.results[this.state.selectedStyle].photos.length - 1})
+        this.setState({selectedPhoto: lastPhoto})
       } else {
         this.setState({selectedPhoto: this.state.selectedPhoto - 1})
       }
@@ -58,33 +62,69 @@ class ProductDetail extends React.Component {
     }
   }
 
+  changeMaxMin (num) {
+    var lastPhoto = this.props.styles.results[this.state.selectedStyle].photos.length - 1
+    if (num > 0) {
+      if (this.state.carouselMax !== lastPhoto) {
+        this.setState({carouselMin: this.state.carouselMin + 1, carouselMax: this.state.carouselMax + 1})
+      }
+    } else {
+      if(this.state.carouselMin > 0) {
+        this.setState({carouselMin: this.state.carouselMin - 1, carouselMax: this.state.carouselMax - 1})
+      }
+    }
+  }
+
   renderView () {
     if (this.state.view === 'main') {
-      return <div style={{display: 'flex', width: '1001', margin: 'auto', justifyContent: 'center', paddingBottom: '15px'}}>
-        <ImageGallery changeView={this.changeView} currentStyle={this.state.selectedStyle} currentPhoto={this.state.selectedPhoto} styles={this.props.styles} getNextPhoto={this.getNextPhoto} getSelectedPhoto={this.getSelectedPhoto}/>
+      return <div className="overviewView">
+        <ImageGallery
+        styles={this.props.styles}
+        min={this.state.carouselMin}
+        max={this.state.carouselMax}
+        currentStyle={this.state.selectedStyle}
+        currentPhoto={this.state.selectedPhoto}
+        changeView={this.changeView}
+        getNextPhoto={this.getNextPhoto}
+        changeMaxMin={this.changeMaxMin}
+        getSelectedPhoto={this.getSelectedPhoto} />
       <div>
         <div>
-          <StyleSelector currentProduct={this.props.currentProduct} styles={this.props.styles} currentStyle={this.state.selectedStyle} getSelectedStyle={this.getSelectedStyle}/>
+          <StyleSelector
+          styles={this.props.styles}
+          currentStyle={this.state.selectedStyle}
+          currentProduct={this.props.currentProduct}
+          getSelectedStyle={this.getSelectedStyle} />
         </div>
-        <div style={{height: '200px', width: '400px'}}>
-          <AddToCart quantity={this.state.availableQuantity} availableQuantity={this.getAvailableQuantity} currentStyle={this.state.selectedStyle} currentProduct={this.props.currentProduct} styles={this.props.styles} />
+        <div className="addToCart">
+          <AddToCart
+          styles={this.props.styles}
+          currentStyle={this.state.selectedStyle}
+          quantity={this.state.availableQuantity}
+          currentProduct={this.props.currentProduct}
+          availableQuantity={this.getAvailableQuantity} />
         </div>
       </div>
     </div>
     } else {
-      return <div style={{height: '600px', width: '1000px', position: 'relative', paddingBottom: '15px', margin: 'auto', justifyContent: 'center'}}>
-              <EnlargePhoto  changeView={this.changeView} currentStyle={this.state.selectedStyle} currentPhoto={this.state.selectedPhoto} styles={this.props.styles}/>
+      return <div className="enlargeView">
+              <EnlargePhoto
+              styles={this.props.styles}
+              currentStyle={this.state.selectedStyle}
+              currentPhoto={this.state.selectedPhoto}
+              changeView={this.changeView} />
             </div>
     }
   }
 
   render() {
     return (
-      <div className='overview'>
-        <h3 style={{textAlign: 'center'}}>SITE-WIDE ANNOUNCEMENT MESSAGE! -- SALE / DISCOUNT <b>OFFER</b> -- <u>NEW PRODUCT HIGHLIGHT</u></h3>
+      <div className="mainOverview">
+        <h3 className="saleHeader">SITE-WIDE ANNOUNCEMENT MESSAGE! -- SALE / DISCOUNT <b>OFFER</b> -- <u>NEW PRODUCT HIGHLIGHT</u></h3>
         {this.renderView()}
-        <div style={{paddingBottom: '15px', width: '1000px', margin: 'auto'}}>
-        <ProductInfo currentProduct={this.props.currentProduct} />
+        <div className="productInfo">
+        <ProductInfo
+        currentProduct={this.props.currentProduct} />
         </div>
       </div>
     )

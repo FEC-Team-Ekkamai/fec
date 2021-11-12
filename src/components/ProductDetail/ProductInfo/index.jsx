@@ -1,28 +1,25 @@
 import React from 'react';
-import Description from './Styles/Description.jsx';
-import MadeOf from './Styles/MadeOf.jsx';
-import MadeOfList from './Styles/MadeOfList.jsx'
-import { ThemeProvider } from 'styled-components'
+
 
 var  ProductInfo = (props) => {
   return (
-      <div>
-      <Description>
-        <p style={{paddingLeft: '80px', paddingTop: '0', fontSize: '25px'}}>
-          <b>{props.currentProduct.slogan}</b>
-        </p>
-        <p style={{paddingLeft: '80px', paddingRight: '20px'}}>
-          {props.currentProduct.description}
-        </p>
-      </Description>
-      <MadeOf>
-        <ul style={{listStyleType: 'none'}}>
-          <MadeOfList><span>&#10003;</span> GMO and Pesticide-free</MadeOfList>
-          <MadeOfList><span>&#10003;</span> What am I doing</MadeOfList>
-          <MadeOfList><span>&#10003;</span> This is made up</MadeOfList>
-          <MadeOfList><span>&#10003;</span> It doesnt matter</MadeOfList>
-        </ul>
-      </MadeOf>
+      <div className="productInfoContainer">
+        <div className="description">
+          <p className="slogan">
+            <b>{props.currentProduct.slogan}</b>
+          </p>
+          <p className="descriptionText">
+            {props.currentProduct.description}
+          </p>
+        </div>
+        <div className="madeOfContainer">
+          <ul className="madeOf">
+            <li className="madeOfEntry"><span>&#10003;</span> GMO and Pesticide-free</li>
+            <li className="madeOfEntry"><span>&#10003;</span> What am I doing</li>
+            <li className="madeOfEntry"><span>&#10003;</span> This is made up</li>
+            <li className="madeOfEntry"><span>&#10003;</span> It doesnt matter</li>
+          </ul>
+        </div>
       </div>
   )
 }

@@ -1,8 +1,13 @@
 import React from 'react';
 
 var  CarouselEntry = (props) => {
+
   return (
-    <img src={props.photo.thumbnail_url} style={{height: '40px', width: '40px', margin: '5px', border: '2px solid black'}} onClick={() => {props.getSelectedPhoto(props.index)}}/>
+    <>
+      {props.index >= props.min && props.index <= props.max ?  <img className="carouselPhoto" src={props.photo.thumbnail_url} onClick={() => {props.getSelectedPhoto(props.index)}}/> : null}
+
+      {props.currentPhoto === props.index && (props.index >= props.min && props.index <= props.max) ? <div className="selectedPhoto"></div> : null}
+    </>
   )
 }
 
