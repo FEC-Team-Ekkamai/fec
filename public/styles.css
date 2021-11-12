@@ -275,6 +275,11 @@ box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
   align-content: space-around;
 }
 
+.qa-body {
+  height: 300px;
+  overflow-y: auto;
+}
+
 .question-body {
   display: flex;
   flex-direction: row;
