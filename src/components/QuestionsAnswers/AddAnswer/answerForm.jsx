@@ -4,7 +4,7 @@ import axios from 'axios';
 import styled, { css } from 'styled-components';
 
 const AnswerBody = styled.textarea`
-  width: 350px;
+  width; 75%;
   height: 100px;
   resize: none;
 `;

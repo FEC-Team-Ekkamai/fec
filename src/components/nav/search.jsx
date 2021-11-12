@@ -26,7 +26,7 @@ const Search = (props) => (
         type="search"
         onChange={props.onChange}
       ></SearchBar>
-      <Button><span className="material-icons search-icon">search</span></Button>
+      <Button className="nav-search-button"><span className="material-icons search-icon">search</span></Button>
     </form>
   </Container>
 )

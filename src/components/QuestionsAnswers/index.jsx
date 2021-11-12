@@ -21,12 +21,10 @@ class QuestionsView extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.productId, '<');
     this.getQuestions();
   }
 
   getQuestions() {
-    console.log('called');
     axios.get(`/api/products/questions/?product_id=${this.props.productId}`)
     .then(questions => {
       this.setState({ questions: questions.data.results });
@@ -62,10 +60,10 @@ class QuestionsView extends React.Component {
     if (this.state.numQuestionsDisplayed < numQuestions && numQuestions !== 0) {
       return (
         <button
-          className="view-more-questions"
+          className="question-button view-more-questions"
           onClick={this.handleViewMore}
         >
-          More Answered Questions
+          <p className="button-text">More Answered Questions</p>
         </button>
       );
     }
@@ -74,10 +72,10 @@ class QuestionsView extends React.Component {
 
   render() {
     return (
-      <>
-        <div className="qa-container">
-          <h3>Questions &amp; Answers</h3>
-          <Search onChange={this.handleChange} />
+      <div className="qa-container">
+        <h3>Questions &amp; Answers</h3>
+        <Search onChange={this.handleChange} />
+        <div className="qa-body">
           <QuestionsList
             getQuestions={this.getQuestions}
             viewMoreAnswers={this.handleViewMoreAnswers}
@@ -87,13 +85,13 @@ class QuestionsView extends React.Component {
           />
         </div>
         <div className="questions-footer">
+          {this.displayMoreQuestionsButton()}
           <AddQuestion
             getQuestions={this.getQuestions}
             productId={this.props.productId}
           />
-          {this.displayMoreQuestionsButton()}
         </div>
-      </>
+      </div>
     );
   }
 }

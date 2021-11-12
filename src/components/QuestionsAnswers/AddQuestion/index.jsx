@@ -1,6 +1,19 @@
 import React from 'react';
 import Modal from './../modal.jsx'
 import Form from './questionForm.jsx';
+import styled, { css } from 'styled-components';
+
+const StyledBackShed = styled.div`
+  transition: all .5s;
+  opacity: 0.9;
+  background-color: grey;
+  position:fixed;
+  width:100%;
+  height:100%;
+  top:0px;
+  left:0px;
+  z-index:1;
+`
 
 class AddQuestion extends React.Component {
   constructor(props) {
@@ -22,7 +35,10 @@ class AddQuestion extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="add-question">
+
+        {this.state.showModal ? <StyledBackShed></StyledBackShed> : null}
+
         <Modal
           headerText={'Question'}
           view={this.state.showModal}
@@ -34,10 +50,11 @@ class AddQuestion extends React.Component {
           />
         </Modal>
         <button
-          className="add-question"
+          className="question-button"
           onClick={this.handleClick}
         >
-          Add a Question
+          <p className="button-text">Add a Question</p>
+          <span className="material-icons">add</span>
         </button>
       </div>
     )

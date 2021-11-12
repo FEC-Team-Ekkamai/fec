@@ -57,7 +57,6 @@ class ReviewList extends React.Component {
     )
     .then((response) => {
       this.setState({productCharacteristics: response.data.characteristics});
-      console.log('product characteristics', this.state.productCharacteristics);
     })
     .catch((error) => {
       console.log(error);
