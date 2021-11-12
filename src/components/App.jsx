@@ -78,7 +78,6 @@ class App extends React.Component {
     event.preventDefault();
 
     const product = this.state.products.find(product => {
-      console.log(product.name, this.state.query)
       return product.name.toLowerCase() === this.state.query.toLowerCase().trim();
     })
 
