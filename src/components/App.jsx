@@ -108,13 +108,13 @@ class App extends React.Component {
             <QuestionsView productId={this.state.firstProductShown.id} />
           </>
         ) : null}
-        <div>
+        <div style={{ width: "100px", margin: "auto" }}>
           {this.state.styles !== null ? (
-            <>
+            <div>
               <RatingsAndReviews
                 firstProduct={this.state.firstProductShown.id}
               />
-            </>
+            </div>
           ) : null}
         </div>
       </div>
