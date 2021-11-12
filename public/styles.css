@@ -134,6 +134,10 @@ box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
   top: 50%;
   right: 10px;
   transform: translate(0, -50%);
+  background-color: white;
+}
+.carouselButton {
+  background-color: white;
 }
 .mainImageContainer {
   display: flex;
@@ -231,8 +235,9 @@ Styling for src/components/ProductDetail/StyleSelector
   padding-top: 5px;
 }
 .category {
+  padding-top: 10px;
   padding-left: 15px;
-  padding-bottom: 5px;
+  padding-bottom: 10px;
 }
 .name {
   padding-left: 15px; padding-bottom: 5px;
