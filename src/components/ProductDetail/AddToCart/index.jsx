@@ -26,22 +26,28 @@ var AddToCart = (props) => {
 
   return (
     <>
-      <select className="size" onChange={props.availableQuantity}>
-        <option>SELECT SIZE</option>
-          {keys.map((quantSize, i) => {
-            var skuObj = props.styles.results[props.currentStyle].skus[quantSize]
-            return <option value={skuObj.quantity} key={i}>{skuObj.size}</option>
-          })}
-      </select>
-      <select className="quantity">
+    <div className="dropdowns">
+      <div className="dropdownContainer">
+        <select className="dropdown" onChange={props.availableQuantity}>
+          <option>SELECT SIZE</option>
+            {keys.map((quantSize, i) => {
+              var skuObj = props.styles.results[props.currentStyle].skus[quantSize]
+              return <option value={skuObj.quantity} key={i}>{skuObj.size}</option>
+            })}
+        </select>
+      </div>
+      <div className="dropdownContainer">
+      <select className="dropdown">
           {quant().map((item, i) => {
             return <option key={i}>{item}</option>
           })}
       </select>
-      <div>
-      <button>Add To Cart</button>
       </div>
-    </>
+    </div>
+    <div className="dropdownContainer">
+      <button className="addToCartButton">Add To Cart</button>
+    </div>
+  </>
   )
 }
 
