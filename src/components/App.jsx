@@ -99,15 +99,15 @@ class App extends React.Component {
         />
         </>
         {this.state.styles !== null
-            ? <ProductDetail
+            ? <><ProductDetail
                 currentProduct={this.state.firstProductShown}
                 styles={this.state.styles}
-              />
+                />
+                <QuestionsView productId={this.state.firstProductShown.id}/></>
             : null}
         <div>
           {this.state.styles !== null
             ? <>
-                <QuestionsView productId={this.state.firstProductShown.id}/>
                 <ReviewList firstProduct={this.state.firstProductShown.id}/>
               </>
             : null

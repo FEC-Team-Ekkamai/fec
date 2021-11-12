@@ -294,6 +294,7 @@ box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
   flex-direction: column;
   margin-left: 3rem;
   align-content: space-around;
+  background-color: #89AAB8;
 }
 
 .qa-body {
