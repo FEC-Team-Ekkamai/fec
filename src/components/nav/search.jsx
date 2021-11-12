@@ -9,7 +9,7 @@ const SearchBar = styled.input`
   background-color: transparent;
   outline: none;
   border: none;
-  border-bottom: solid 1px black;
+  border-bottom: solid 1px white;
   font-size: 18px;
   padding: 1rem;
 `;

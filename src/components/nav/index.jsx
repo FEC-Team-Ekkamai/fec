@@ -3,15 +3,16 @@ import SearchBar from './search.jsx';
 import styled, { css } from 'styled-components';
 
 const NavBar = styled.div`
-  background: #9EB7C1;
-  position: absolute;
+  background: rgba(0,0,0, .3);
+  position: fixed;
   width: 100%;
   height:75px;
   display: flex;
   flex-direction: row;
   align-items: center;
   top: 0;
-  left 0;
+  left: 0;
+  z-index: 5;
 `;
 
 const Nav = (props) => (
