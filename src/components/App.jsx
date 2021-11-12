@@ -5,8 +5,7 @@ import ReviewBody from "./RatingsAndReviews/ReviewBody.jsx";
 import ProductDetail from "./ProductDetail/Main.jsx";
 import ReviewList from "./RatingsAndReviews/ReviewList.jsx";
 import QuestionsView from './QuestionsAnswers/index.jsx';
-
-// this is a test
+import Nav from './nav/index.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -14,12 +13,15 @@ class App extends React.Component {
     this.state = {
       products: [],
       firstProductShown: {},
+      query: '',
       styles: null
     };
     this.getProducts = this.getProducts.bind(this);
     this.getFirstProduct = this.getFirstProduct.bind(this);
     this.getProductByID = this.getProductByID.bind(this);
     this.getProductStyle = this.getProductStyles.bind(this)
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount () {
@@ -60,25 +62,55 @@ class App extends React.Component {
       product: productId
     })
     .then((response) => {
-      this.setState({ styles: response.data})
+      this.setState({ styles: response.data })
     })
     .catch((error) => {
       console.log('post error: ', error);
     })
   }
 
+  handleChange(event) {
+    this.setState({ query: event.target.value });
+  }
+
+  handleSubmit(event) {
+
+    event.preventDefault();
+
+    const product = this.state.products.find(product => {
+      console.log(product.name, this.state.query)
+      return product.name.toLowerCase() === this.state.query.toLowerCase().trim();
+    })
+
+    if (product) {
+      this.setState({
+        firstProductShown: product,
+      });
+      this.getProductStyles(product.id);
+    }
+    event.target.reset();
+  }
+
   render() {
     return (
       <div>
-        This is the FEC app
+        <><Nav
+          onSubmit={this.handleSubmit}
+          onChange={this.handleChange}
+        />
+        </>
         {this.state.styles !== null
-            ? <ProductDetail currentProduct={this.state.firstProductShown} styles={this.state.styles}/>
-            : null
-          }
+            ? <ProductDetail
+                currentProduct={this.state.firstProductShown}
+                styles={this.state.styles}
+              />
+            : null}
         <div>
           {this.state.styles !== null
-            ? <><QuestionsView productId={this.state.firstProductShown.id}/>
-            <ReviewList firstProduct = {this.state.firstProductShown.id}/></>
+            ? <>
+                <QuestionsView productId={this.state.firstProductShown.id}/>
+                <ReviewList firstProduct={this.state.firstProductShown.id}/>
+              </>
             : null
           }
         </div>
