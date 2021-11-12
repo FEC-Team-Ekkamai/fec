@@ -4,9 +4,26 @@ import axios from 'axios';
 import Form from './../form.jsx';
 
 const QuestionBody = styled.textarea`
-  width: 350px;
-  height: 100px;
+  width: 75%;
+  height: 5rem;
   resize: none;
+  top: 0;
+  left: 0;
+  margin: 0 auto;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+`
+
+const Button = styled.button`
+  top: 0;
+  left: 0;
+  margin: 0 auto;
+  width: 5rem;
 `;
 
 class QuestionForm extends React.Component {
@@ -38,13 +55,33 @@ class QuestionForm extends React.Component {
   render() {
     return (
       <Form onSubmit={this.handleSubmit}>
-        <label htmlFor="name">Name: </label>
-        <input name="name" type="text" onChange={this.handleChange} /><br />
-        <label htmlFor="email">e-mail: </label>
-        <input name="email" type="text" onChange={this.handleChange} /><br />
-        <label htmlFor="question-input">What is your question? </label>
-        <QuestionBody name="body" onChange={this.handleChange} />
-        <button type="submit">Submit</button>
+        <Container>
+          <div>
+            <label htmlFor="name">Name: </label>
+            <input
+              className="text-input"
+              name="name"
+              type="text"
+              onChange={this.handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="email">e-mail: </label>
+            <input
+              className="text-input"
+              name="email"
+              type="text"
+              onChange={this.handleChange}
+            />
+          </div>
+        </Container>
+        <Container><label htmlFor="question-input">What is your question? </label></Container>
+        <QuestionBody
+          name="body"
+          className="text-body-input"
+          onChange={this.handleChange}
+        />
+        <Button type="submit">Submit</Button>
       </Form>
     );
   }
