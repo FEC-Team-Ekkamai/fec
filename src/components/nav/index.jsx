@@ -3,8 +3,8 @@ import SearchBar from './search.jsx';
 import styled, { css } from 'styled-components';
 
 const NavBar = styled.div`
-  background: #9EB7C1;
-  position: absolute;
+  background: #2EBCD9 ;
+  position: fixed;
   width: 100%;
   height:75px;
   display: flex;
@@ -12,6 +12,7 @@ const NavBar = styled.div`
   align-items: center;
   top: 0;
   left 0;
+  z-index: 4;
 `;
 
 const Nav = (props) => (

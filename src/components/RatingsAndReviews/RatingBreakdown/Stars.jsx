@@ -41,7 +41,6 @@ const Stars = (props) => {
 
   for (var i = 0; i < 5; i++) {
     ratingsArray.push(Number(average));
-    console.log(ratingsArray);
     average = average - 1;
   }
 

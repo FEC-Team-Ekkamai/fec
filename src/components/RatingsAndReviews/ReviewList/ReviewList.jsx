@@ -14,20 +14,25 @@ const StyledDiv = styled.div`
   width: 70%;
   overflow-y: auto;
   float: right;
-  border: 1px solid black;
 `;
 
 const StyledContainer = styled.div`
-  position: relative;
-  border: 1px solid red;
+  position: absolute;
+  height: 40px;
+  width: 750px;
+  top: 50%;
+  left: 60%;
 `;
 
 const StyledDivButton = styled.div`
-  position: absolute;
+  position: relative;
+  float: left;
+  display: inline-block;
 `;
 
 const StyledDivButton1 = styled.div`
-  position: absolute;
+  position: relative;
+  float: left;
 `;
 
 class ReviewList extends React.Component {
@@ -87,9 +92,7 @@ class ReviewList extends React.Component {
         });
         this.reviewCountRenderNewest();
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   }
 
   getReviewsForProductHelpful() {
@@ -112,9 +115,7 @@ class ReviewList extends React.Component {
         this.setState({ productReviewsHelpful: response.data.results });
         this.reviewCountRenderHelpful();
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   }
 
   getReviewsForProductRelevant() {
@@ -137,9 +138,7 @@ class ReviewList extends React.Component {
         this.setState({ productReviewsRelevant: response.data.results });
         this.reviewCountRenderRelevant();
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   }
 
   getCharacteristicsForProduct() {
@@ -154,17 +153,12 @@ class ReviewList extends React.Component {
         { params: params }
       )
       .then((response) => {
-        this.setState(
-          {
-            productCharacteristics: response.data.characteristics,
-            productMeta: response.data,
-          },
-          () => console.log(this.state.productMeta)
-        );
+        this.setState({
+          productCharacteristics: response.data.characteristics,
+          productMeta: response.data,
+        });
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   }
 
   componentDidMount() {

@@ -95,10 +95,10 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <>
+      <div style={{ display: "flex", flexDirection: "column", margin: "1px" }}>
+        <div>
           <Nav onSubmit={this.handleSubmit} onChange={this.handleChange} />
-        </>
+        </div>
         {this.state.styles !== null ? (
           <>
             <ProductDetail
@@ -108,7 +108,7 @@ class App extends React.Component {
             <QuestionsView productId={this.state.firstProductShown.id} />
           </>
         ) : null}
-        <div style={{ width: "100px", margin: "auto" }}>
+        <div style={{ width: "1100px", margin: "auto", position: "relative" }}>
           {this.state.styles !== null ? (
             <div>
               <RatingsAndReviews
