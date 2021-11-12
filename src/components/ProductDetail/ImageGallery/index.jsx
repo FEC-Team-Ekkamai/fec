@@ -1,15 +1,35 @@
 import React from 'react';
+import CarouselEntry from './CarouselEntry.jsx';
 
 var  ImageGallery = (props) => {
-  //console.log(props);
+  var photosLength = props.styles.results[props.currentStyle].photos.length
   return (
-    <>
-      <img src={props.styles.results[props.currentStyle].photos[props.currentPhoto].url} style={{maxWidth: '100%', maxHeight: '100%', margin: 'auto', display: 'block'}}/>
-      <div>
-        <button onClick={() => {props.getNextPhoto(-1)}}>Previous</button>
-        <button onClick={() => {props.getNextPhoto(1)}}>Next</button>
+    <div className="galleryContainer">
+      <div className="imageCarousel">
+        {photosLength > 7 ? <div onClick={() => {props.changeMaxMin(-1)}}>{'^'}</div> : null}
+        {props.styles.results[props.currentStyle].photos.map((photo, i) => {
+          return (
+            <CarouselEntry
+            key={i}
+            index={i}
+            photo={photo}
+            max={props.max}
+            min={props.min}
+            changeMaxMin={props.changeMaxMin}
+            currentPhoto={props.currentPhoto}
+            getSelectedPhoto={props.getSelectedPhoto} />
+          )
+        })}
+        {photosLength > 7 ? <div onClick={() => {props.changeMaxMin(1)}}>{'∨'}</div> : null}
       </div>
-    </>
+      <div className="prevNext">
+        <button onClick={() => {props.getNextPhoto(-1)}}>{'<'}</button>
+        <button onClick={() => {props.getNextPhoto(1)}}>{'>'}</button>
+      </div>
+      <div className="mainImageContainer">
+        <img className="mainImage" src={props.styles.results[props.currentStyle].photos[props.currentPhoto].url} onClick={() => {props.changeView(1)}}/>
+      </div>
+    </div>
   )
 }
 

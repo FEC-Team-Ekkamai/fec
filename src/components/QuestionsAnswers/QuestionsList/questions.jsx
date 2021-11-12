@@ -1,5 +1,7 @@
 import React from 'react';
+import axios from 'axios';
 import Answers from './answers.jsx';
+import AddAnswer from './../AddAnswer/index.jsx';
 
 class Questions extends React.Component {
   constructor(props) {
@@ -8,51 +10,103 @@ class Questions extends React.Component {
       numAnswersDisplayed: 2
     };
     this.handleViewMoreAnswers = this.handleViewMoreAnswers.bind(this);
+    this.handleHelpfulClick = this.handleHelpfulClick.bind(this);
+    this.handleReport = this.handleReport.bind(this);
   }
 
   handleViewMoreAnswers(event) {
-    console.log('Clicked view more answers');
     event.preventDefault();
     let numDisplayed = this.state.numAnswersDisplayed;
     this.setState({
       numAnswersDisplayed: numDisplayed + 2
-    })
+    });
   }
 
   displayLoadAnswers() {
     const numAnswers = Object.keys(this.props.question.answers).length;
     if (this.state.numAnswersDisplayed < numAnswers && this.state.numAnswers !== 0) {
       return (
-        <span onClick={this.handleViewMoreAnswers}>
-          <b>Load More Answers</b>
-        </span>
+        <div className="load-answer-container" onClick={this.handleViewMoreAnswers}>
+          <span>
+            <p className="load-answer-button">Load More Answers</p>
+          </span>
+        </div>
       );
     }
     return null;
   }
 
+  handleHelpfulClick() {
+    const id = { question_id: this.props.question.question_id}
+    axios.put('/api/products/questions/helpful', id)
+      .then(() => {this.props.getQuestions()})
+      .catch(console.error);
+  }
+
+  handleReport() {
+    const id = { question_id: this.props.question.question_id}
+    axios.put('/api/products/questions/report', id)
+      .then(() => {this.props.getQuestions()})
+      .catch(console.error);
+  }
+
+  renderAnswerList() {
+    const answers = Object.values(this.props.question.answers)
+                          .slice(0, this.state.numAnswersDisplayed);
+    if (answers.length === 0) {
+      return null;
+    }
+    return (
+      <div className="answers-list">
+        <div className="qa-identifier">A:</div>
+        <div className="answer">
+          {answers.map(answer => (
+            <Answers
+              key={answer.id}
+              answer={answer}
+              getQuestions={this.props.getQuestions}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   render() {
-    return(
-      <li key={this.props.question.question_id}>
-          <div className="question-body">
-            <span className="question-header">
-              <b>Q: {this.props.question.question_body}</b>
-            </span>
-            <span>   Helpful? <u>Yes</u> ({this.props.question.question_helpfulness}) | <u>Add an Answer</u></span>
-          </div>
-          <div className="answer-container">
-            <ul>
-              {Object.values(this.props.question.answers).map((answer, index) => (
-                index <  this.state.numAnswersDisplayed
-                  ? <Answers key={answer.id} answer={answer} />
-                  : null
-              ))}
-            </ul>
-            <div>
-              {this.displayLoadAnswers()}
+    return (
+      <>
+        <div
+          key={this.props.question.question_id}
+          className="question-body">
+          <span className="question-header">
+            <div className="qa-identifier">Q:</div>
+            <div className="question-text">{this.props.question.question_body}</div>
+          </span>
+          <div className="reaction-container">
+            <div className="left-reaction-container">
+              <p>Helpful?&nbsp;
+                <span
+                  className="reaction-button"
+                  onClick={this.handleHelpfulClick}
+                >
+                  Yes
+                </span>
+                &nbsp;({this.props.question.question_helpfulness})
+              </p>
             </div>
+            <AddAnswer
+              questionId={this.props.question.question_id}
+              getQuestions={this.props.getQuestions}
+              />
+            <span
+              className="reaction-button report-container"
+              onClick={this.handleReport}
+              >Report</span>
           </div>
-        </li>
+        </div>
+        {this.renderAnswerList()}
+        {this.displayLoadAnswers()}
+      </>
     );
   }
 }

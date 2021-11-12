@@ -1,28 +1,62 @@
 import React from 'react';
 import moment from 'moment';
+import axios from 'axios';
 
-var isSeller = (name) => {
-  return name.toLowerCase() === 'seller';
-}
+const Answers = (props) => {
 
-const Answers = (props) => (
-  <li>
+  const id = {answer_id: props.answer.id}
+
+  let handleHelpfulClick = (event) => {
+    axios.put('/api/products/answers/helpful', id)
+      .then(() => {props.getQuestions()})
+      .catch(console.error);
+  };
+
+  let handleReport = (event) => {
+    axios.put('/api/products/answers/report', id)
+      .then(() => {props.getQuestions()})
+      .catch(console.error);
+  };
+
+  let isSeller = (name) => {
+    return name.toLowerCase() === 'seller';
+  };
+
+  return (
     <div className="answer-container">
-      <div className="answer-identifier">A:</div>
       <div className="answer-body">
         <div className="answer-text">{props.answer.body}</div>
         <div className="answer-footer">
-          <span>{isSeller(props.answer.answerer_name)
-            ? <b>{props.answer.answerer_name}</b>
-            : <p>{props.answer.answerer_name}</p>}
+          <span className={
+            isSeller(props.answer.answerer_name)
+              ? 'seller user'
+              : 'user '}>
+            by {props.answer.answerer_name},&nbsp;
           </span>
-          <span>  {moment(props.answer.date).format('MMMM D, YYYY')} |  </span>
-          <span>Helpful? <u>Yes</u> ({props.answer.helpfulness})  |  </span>
-          <span><u>Report</u></span>
+          <span className="left-reaction-container">
+            {moment(props.answer.date).format('MMMM D, YYYY')}
+          </span>
+          <span
+            className="middle-reaction-container"
+            onClick={handleHelpfulClick}
+          >
+            <p className="helpful-text">Helpful?&nbsp;
+              <span className="reaction-button">Yes</span>
+              &nbsp;({props.answer.helpfulness})
+            </p>
+          </span>
+          <span className="report-container">
+            <p
+              className="reaction-button"
+              onClick={handleReport}
+            >
+              Report
+            </p>
+          </span>
         </div>
         </div>
     </div>
-  </li>
-);
+  );
+};
 
 export default Answers;

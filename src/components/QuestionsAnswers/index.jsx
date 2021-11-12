@@ -5,8 +5,6 @@ import QuestionsList from './QuestionsList/questionsList.jsx';
 import AddQuestion from './AddQuestion/index.jsx';
 
 class QuestionsView extends React.Component {
-
-
   constructor(props) {
     const DEFAULT_QA_ELEMENTS_SHOWN = 2;
     super(props);
@@ -15,14 +13,18 @@ class QuestionsView extends React.Component {
       displayedQuestions: [],
       numQuestionsDisplayed: DEFAULT_QA_ELEMENTS_SHOWN,
     };
-    this.handleQuestionSubmit = this.handleQuestionSubmit.bind(this);
     this.filterQuestions = this.filterQuestions.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleViewMore = this.handleViewMore.bind(this);
-    this.displayMoreQuestions = this.displayMoreQuestions.bind(this);
+    this.displayMoreQuestionsButton = this.displayMoreQuestionsButton.bind(this);
+    this.getQuestions = this.getQuestions.bind(this);
   }
 
   componentDidMount() {
+    this.getQuestions();
+  }
+
+  getQuestions() {
     axios.get(`/api/products/questions/?product_id=${this.props.productId}`)
     .then(questions => {
       this.setState({ questions: questions.data.results });
@@ -31,16 +33,6 @@ class QuestionsView extends React.Component {
     .catch(console.error)
   }
 
-  // change name
-  handleQuestionSubmit(event, body) {
-    event.preventDefault();
-    body.product_id = this.props.productId;
-    axios.post('/api/products/questions', body)
-      .then(console.log)  // maybe perform redirection here or create 'success' modal
-      .catch(console.error)
-  }
-
-  // todo: if all questions are shown, "remove view" more button
   handleViewMore(event) {
     event.preventDefault();
     let numDisplayed = this.state.numQuestionsDisplayed;
@@ -63,15 +55,15 @@ class QuestionsView extends React.Component {
     });
   }
 
-  displayMoreQuestions() {
+  displayMoreQuestionsButton() {
     const numQuestions = this.state.questions.length;
     if (this.state.numQuestionsDisplayed < numQuestions && numQuestions !== 0) {
       return (
         <button
-          className="view-more-questions"
+          className="question-button view-more-questions"
           onClick={this.handleViewMore}
         >
-          More Answered Questions
+          <p className="button-text">More Answered Questions</p>
         </button>
       );
     }
@@ -80,11 +72,12 @@ class QuestionsView extends React.Component {
 
   render() {
     return (
-      <>
-        <div className="qa-container">
-          <h3>Questions &amp; Answers</h3>
-          <Search onChange={this.handleChange} />
+      <div className="qa-container">
+        <h3>Questions &amp; Answers</h3>
+        <Search onChange={this.handleChange} />
+        <div className="qa-body">
           <QuestionsList
+            getQuestions={this.getQuestions}
             viewMoreAnswers={this.handleViewMoreAnswers}
             numQuestionsDisplayed={this.state.numQuestionsDisplayed}
             numAnswersDisplayed={this.state.numAnswersDisplayed}
@@ -92,10 +85,13 @@ class QuestionsView extends React.Component {
           />
         </div>
         <div className="questions-footer">
-          <AddQuestion handleSubmit={this.handleQuestionSubmit}/>
-          {this.displayMoreQuestions()}
+          {this.displayMoreQuestionsButton()}
+          <AddQuestion
+            getQuestions={this.getQuestions}
+            productId={this.props.productId}
+          />
         </div>
-      </>
+      </div>
     );
   }
 }
