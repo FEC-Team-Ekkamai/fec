@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import axios from 'axios';
-import ReviewBody from "./RatingsAndReviews/ReviewBody.jsx";
+import axios from "axios";
+import ReviewBody from "./RatingsAndReviews/ReviewList/Body.jsx";
 import ProductDetail from "./ProductDetail/Main.jsx";
-import ReviewList from "./RatingsAndReviews/ReviewList.jsx";
-import QuestionsView from './QuestionsAnswers/index.jsx';
+import RatingsAndReviews from "./RatingsAndReviews/RatingsandReviews.jsx";
+import QuestionsView from "./QuestionsAnswers/index.jsx";
 
 // this is a test
 
@@ -14,73 +14,80 @@ class App extends React.Component {
     this.state = {
       products: [],
       firstProductShown: {},
-      styles: null
+      styles: null,
     };
     this.getProducts = this.getProducts.bind(this);
     this.getFirstProduct = this.getFirstProduct.bind(this);
     this.getProductByID = this.getProductByID.bind(this);
-    this.getProductStyle = this.getProductStyles.bind(this)
+    this.getProductStyle = this.getProductStyles.bind(this);
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.getProducts();
   }
 
-  getFirstProduct () {
+  getFirstProduct() {
     var numberOfProducts = this.state.products.length;
     var randomProduct = Math.floor(Math.random() * numberOfProducts);
-    this.setState({firstProductShown: this.state.products[randomProduct]})
+    this.setState({ firstProductShown: this.state.products[randomProduct] });
   }
 
-  getProducts () {
-    axios.get(`http://127.0.0.1:3000/api/products`)
+  getProducts() {
+    axios
+      .get(`http://127.0.0.1:3000/api/products`)
       .then((response) => {
-        this.setState({products: response.data});
+        this.setState({ products: response.data });
         this.getFirstProduct();
         this.getProductStyles(this.state.firstProductShown.id);
       })
       .catch((error) => {
         console.log(error);
+      });
+  }
+
+  getProductByID(productId) {
+    axios
+      .post(`http://127.0.0.1:3000/api/products/id`, {
+        product: productId,
       })
+      .then((response) => {})
+      .catch((error) => {
+        console.log("post error: ", error);
+      });
   }
 
-  getProductByID (productId) {
-    axios.post(`http://127.0.0.1:3000/api/products/id`, {
-      product: productId
-    })
-    .then((response) => {
-    })
-    .catch((error) => {
-      console.log('post error: ', error);
-    })
-  }
-
-  getProductStyles (productId) {
-    axios.post(`http://127.0.0.1:3000/api/products/id/styles`, {
-      product: productId
-    })
-    .then((response) => {
-      this.setState({ styles: response.data})
-    })
-    .catch((error) => {
-      console.log('post error: ', error);
-    })
+  getProductStyles(productId) {
+    axios
+      .post(`http://127.0.0.1:3000/api/products/id/styles`, {
+        product: productId,
+      })
+      .then((response) => {
+        this.setState({ styles: response.data });
+      })
+      .catch((error) => {
+        console.log("post error: ", error);
+      });
   }
 
   render() {
     return (
       <div>
         This is the FEC app
-        {this.state.styles !== null
-            ? <ProductDetail currentProduct={this.state.firstProductShown} styles={this.state.styles}/>
-            : null
-          }
+        {this.state.styles !== null ? (
+          <ProductDetail
+            currentProduct={this.state.firstProductShown}
+            styles={this.state.styles}
+          />
+        ) : null}
         <div>
-          {this.state.styles !== null
-            ? <><QuestionsView productId={this.state.firstProductShown.id}/>
-            <ReviewList firstProduct = {this.state.firstProductShown.id}/></>
-            : null
-          }
+          {this.state.styles !== null ? (
+            <>
+              <QuestionsView productId={this.state.firstProductShown.id} />
+              <RatingsAndReviews
+                firstProduct={this.state.firstProductShown.id}
+              />
+            </>
+          ) : null}
         </div>
       </div>
     );

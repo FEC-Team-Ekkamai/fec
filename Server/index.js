@@ -1,9 +1,9 @@
 const express = require('express');
 const path = require('path');
 const axios = require('axios');
-//const api = require('./config.js')
+const api = require('./config.js')
 const app = express();
-const api =require('./token');
+//const api =require('./token');
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
@@ -143,6 +143,26 @@ app.put(`/api/reviews/:review_id/report`, (req, res) => {
       res.sendStatus(500);
     })
 })
+
+app.post('/api/reviews', (req, res) => {
+  console.log(req.body)
+  var params = req.body;
+  const options = {
+    method: 'post',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/`,
+    headers: api,
+    data: params
+    }
+  axios(options)
+   .then((response) => {
+     res.send(response.data);
+   })
+   .catch((error) => {
+     res.sendStatus(500);
+   })
+})
+
+
 
 /**
  * These are the routes for Questions and Answers APIs
