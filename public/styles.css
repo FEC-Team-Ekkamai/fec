@@ -151,6 +151,9 @@ box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
   max-width: 100%;
   margin: auto;
   display: block;
+  cursor: -moz-zoom-in;
+  cursor: -webkit-zoom-in;
+  cursor: zoom-in;
 }
 .enlargePhoto {
 max-width: 100%;
@@ -160,6 +163,9 @@ position: relative;
 top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
+cursor: -moz-zoom-out;
+cursor: -webkit-zoom-out;
+cursor: zoom-out;
 }
 .carouselPhoto {
   height: 40px;
@@ -186,7 +192,7 @@ Styling for src/components/ProductDetail/ProductInfo
 }
 
 .description {
-  width: 69%;
+  width: 64%;
   height: 150px;
   float: left;
 }
@@ -202,7 +208,7 @@ Styling for src/components/ProductDetail/ProductInfo
 }
 
 .madeOfContainer {
-  width: 30%;
+  width: 35%;
   height: 150px;
   float: left;
   border-left: 1px solid black;
@@ -211,7 +217,8 @@ Styling for src/components/ProductDetail/ProductInfo
 .madeOf {
   list-style-type: none;
   padding-top: 17px;
-  padding-left: 20px;
+  padding-left: 23px;
+  font-size: medium;
 }
 
 .madeOfEntry {
@@ -234,6 +241,15 @@ Styling for src/components/ProductDetail/StyleSelector
   padding-bottom: 5px;
   padding-top: 5px;
 }
+
+.checked {
+  color: #ffc107;
+}
+
+.unchecked {
+  color: #d0d0d0;
+}
+
 .category {
   padding-top: 10px;
   padding-left: 15px;
@@ -248,6 +264,7 @@ Styling for src/components/ProductDetail/StyleSelector
   padding-left: 15px; padding-bottom: 5px;
   color: #4B4B4B;
   margin-bottom: 10px;
+  font-weight: bold;
 }
 
 .style {

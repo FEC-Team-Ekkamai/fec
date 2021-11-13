@@ -124,6 +124,7 @@ class ProductDetail extends React.Component {
         {this.renderView()}
         <div className="productInfo">
         <ProductInfo
+        features={this.props.features}
         currentProduct={this.props.currentProduct} />
         </div>
       </div>

@@ -8,7 +8,13 @@ var StyleSelector = (props) => {
 
   return (
     <div className="styleContainer">
-      {/* <div className="rating">This is where ratings will go</div> */}
+      <div className="rating">
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star unchecked"></span>
+      </div>
       <div className="category">{props.currentProduct.category}</div>
       <div className="name">{props.currentProduct.name}</div>
 

@@ -11,6 +11,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      features: [],
       products: [],
       firstProductShown: {},
       query: "",
@@ -40,6 +41,7 @@ class App extends React.Component {
       .then((response) => {
         this.setState({ products: response.data });
         this.getFirstProduct();
+        this.getProductByID(this.state.firstProductShown.id)
         this.getProductStyles(this.state.firstProductShown.id);
       })
       .catch((error) => {
@@ -52,7 +54,9 @@ class App extends React.Component {
       .post(`http://127.0.0.1:3000/api/products/id`, {
         product: productId,
       })
-      .then((response) => {})
+      .then((response) => {
+        this.setState({features: response.data.features})
+      })
       .catch((error) => {
         console.log("post error: ", error);
       });
@@ -102,8 +106,9 @@ class App extends React.Component {
         {this.state.styles !== null ? (
           <>
             <ProductDetail
-              currentProduct={this.state.firstProductShown}
               styles={this.state.styles}
+              features={this.state.features}
+              currentProduct={this.state.firstProductShown}
             />
             <QuestionsView productId={this.state.firstProductShown.id} />
           </>
