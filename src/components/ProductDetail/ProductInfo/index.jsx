@@ -1,4 +1,5 @@
 import React from 'react';
+import FeatureEntry from './FeatureEntry.jsx'
 
 
 var  ProductInfo = (props) => {
@@ -14,10 +15,13 @@ var  ProductInfo = (props) => {
         </div>
         <div className="madeOfContainer">
           <ul className="madeOf">
-            <li className="madeOfEntry"><span>&#10003;</span> GMO and Pesticide-free</li>
-            <li className="madeOfEntry"><span>&#10003;</span> What am I doing</li>
-            <li className="madeOfEntry"><span>&#10003;</span> This is made up</li>
-            <li className="madeOfEntry"><span>&#10003;</span> It doesnt matter</li>
+            {props.features.map((feature, i) => {
+              return (
+                <FeatureEntry
+                key={i}
+                feature={feature} />
+              )
+            })}
           </ul>
         </div>
       </div>
