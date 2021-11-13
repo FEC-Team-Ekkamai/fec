@@ -4,7 +4,9 @@ import styled from "styled-components";
 const StyledDropdown = styled.div`
   position: absolute;
   left: 565px;
-  top: 140%;
+  top: 150%;
+  left: 60%;
+  overflow: visible;
   font-family: "Open Sans", sans-serif;
   color: #9eb7c0;
   border-radius: 25px;

@@ -7,9 +7,10 @@ const Container = styled.div`
 
 const SearchBar = styled.input`
   background-color: transparent;
+  color: #89AAB8;
   outline: none;
   border: none;
-  border-bottom: solid 1px black;
+  border-bottom: solid 1px white;
   font-size: 18px;
   padding: 1rem;
 `;
@@ -23,6 +24,7 @@ const Search = (props) => (
   <Container>
     <form onSubmit={props.onSubmit}>
       <SearchBar
+        className="text-input"
         type="search"
         onChange={props.onChange}
       ></SearchBar>

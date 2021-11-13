@@ -53,7 +53,6 @@ class Form extends React.Component {
 
   render() {
     const hasCharacteristics = Object.keys(this.props.characteristics);
-    console.log(this.props.formSubmitHandler);
     return (
       <div>
         <form onSubmit={this.props.formSubmitHandler}>

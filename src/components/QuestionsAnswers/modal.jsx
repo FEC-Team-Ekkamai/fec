@@ -15,8 +15,8 @@ const ModalContainer  = styled.div`
 `;
 
 const Body = styled.div`
+  background: #D0D0D0;
   padding: 10px 15px;
-  text-align: center;
   height: 30%;
 `;
 
@@ -24,7 +24,7 @@ const Header = styled.div`
   background: #e2e2e2;
   height: 40px;
   line-height: 40px;
-  padding: 5px 20px;
+  padding: 1rem 4rem;
   text-align: right;
   margin: 0;
   padding: 1rem;

@@ -32,7 +32,7 @@ Ekkamai Clothing is a monolithic e-Commerce website that delivers products to th
 ```bash
   git clone https://github.com/FEC-Team-Ekkamai/fec.git
   cd ../fec.git
-  npm install
+  npm install --legacy-peer-deps
   npm run build
   npm start
 ```

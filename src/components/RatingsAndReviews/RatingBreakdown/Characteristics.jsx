@@ -58,7 +58,6 @@ const Characteristics = (props) => {
   var characteristicsArray = Object.entries(
     props.characteristics.characteristics
   );
-  console.log(characteristicsArray);
 
   return (
     <StyledCharacteristics>
