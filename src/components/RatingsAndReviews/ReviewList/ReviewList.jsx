@@ -11,28 +11,28 @@ import styled from "styled-components";
 const StyledDiv = styled.div`
   position: relative;
   height: 500px;
-  width: 70%;
+  width: 750px;
   overflow-y: auto;
-  float: right;
+  margin-left: 19px;
+  background: rgba(0,0,0, .1);
+  border-radius: 15px;
+  margin-top: 10px;
 `;
 
 const StyledContainer = styled.div`
-  position: absolute;
-  height: 40px;
   width: 750px;
-  top: 200%;
-  left: 60%;
+  position: relative;
+  margin-left: 333px;
 `;
 
 const StyledDivButton = styled.div`
-  position: relative;
-  float: left;
-  display: inline-block;
+  width: 100px;
+  margin: 10px;
 `;
 
 const StyledDivButton1 = styled.div`
-  position: relative;
-  float: left;
+  width: 100px;
+  margin: 10px;
 `;
 
 class ReviewList extends React.Component {
@@ -284,7 +284,7 @@ class ReviewList extends React.Component {
             : null}
         </StyledDiv>
 
-        <StyledContainer>
+        {/* <StyledContainer>
           <StyledDivButton1>
             <AddReview
               characteristics={this.state.productCharacteristics}
@@ -298,7 +298,37 @@ class ReviewList extends React.Component {
               <MoreReviews moreReviewHandler={reviewCountRender} />
             ) : null}
           </StyledDivButton>
-        </StyledContainer>
+        </StyledContainer> */}
+
+        {reviews.length !== 0 ? (
+          <StyledContainer>
+            <div style={{width: '270px', display: 'flex', flexDirection: 'row', marginLeft: '256px', marginTop: '10px'}}>
+              <StyledDivButton1>
+                <AddReview
+                  characteristics={this.state.productCharacteristics}
+                  show={this.state.isShowing}
+                  close={this.modalHandler}
+                  productId={this.state.product_id}
+                  />
+              </StyledDivButton1>
+              <StyledDivButton>
+                <MoreReviews moreReviewHandler={reviewCountRender} />
+              </StyledDivButton>
+              </div>
+            </StyledContainer> ) : (
+            <StyledContainer>
+              <div style={{width: '135px', marginLeft: '316px', marginTop: '10px'}}>
+              <StyledDivButton1>
+                <AddReview
+                  characteristics={this.state.productCharacteristics}
+                  show={this.state.isShowing}
+                  close={this.modalHandler}
+                  productId={this.state.product_id}
+                />
+              </StyledDivButton1>
+            </div>
+          </StyledContainer>
+          )}
       </div>
     );
   }

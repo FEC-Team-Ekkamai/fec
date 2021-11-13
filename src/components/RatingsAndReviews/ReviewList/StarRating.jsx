@@ -7,6 +7,7 @@ const StyledDiv = styled.div`
   top: 0;
   left: 5%;
   width: 30%;
+  margin-top: 15px;
 `;
 
 const StarRating = (props) => {

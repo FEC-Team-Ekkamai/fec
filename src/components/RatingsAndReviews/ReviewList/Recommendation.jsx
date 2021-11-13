@@ -10,6 +10,7 @@ const StyledRecommendation = styled.div`
   width: 30%;
   font-size: 12px;
   font-family: "Open Sans", sans-serif;
+  margin-bottom: 15px;
 `;
 
 const Recommendation = (props) => (

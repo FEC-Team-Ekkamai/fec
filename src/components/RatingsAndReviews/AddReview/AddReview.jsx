@@ -12,7 +12,7 @@ const StyledBackShed = styled.div`
   height: 100%;
   top: 0px;
   left: 0px;
-  z-index: 1;
+  z-index: 3;
 `;
 
 const StyledOpenButton = styled.button`
@@ -109,20 +109,23 @@ class AddReview extends React.Component {
         </StyledOpenButton>
 
         {this.state.isShowing ? (
-          <Modal
-            characteristics={this.props.characteristics}
-            modalHandler={this.modalHandler}
-            show={this.state.isShowing}
-            close={this.modalHandler}
-            formSubmitHandler={this.formSubmitHandler}
-            formInput={this.state.formInput}
-            setRating={this.setRating}
-            rating={this.state.rating}
-          />
+          // <div style={{overflow: 'visible', width: '500px', height: '500px', zIndex: '10'}}>
+            <Modal
+              characteristics={this.props.characteristics}
+              modalHandler={this.modalHandler}
+              show={this.state.isShowing}
+              close={this.modalHandler}
+              formSubmitHandler={this.formSubmitHandler}
+              formInput={this.state.formInput}
+              setRating={this.setRating}
+              rating={this.state.rating}
+            />
+          // </div>
         ) : null}
       </div>
     );
   }
 }
+
 
 export default AddReview;

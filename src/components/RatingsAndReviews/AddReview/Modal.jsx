@@ -5,17 +5,12 @@ import Submit from "./Submit.jsx";
 
 const StyledWrapper = styled.div`
   background: white;
-  border: 1px solid #d0cccc;
-  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
-  margin: 300px auto 0;
   transition: all 0.8s;
-  width: 60%;
-  left: -433%;
+  width: 700px;
   border-radius: 10px;
   position: absolute;
-  z-index: 3;
-  transform: translate(-175%, -100%);
-  overflow: visible;
+  z-index: 6;
+  transform: translate(-415px, -765px);
 `;
 
 const StyledHeader = styled.div`
@@ -24,7 +19,7 @@ const StyledHeader = styled.div`
   width: 700px;
 
   line-height: 40px;
-  padding: 5px 20px;
+  padding: 5px 15px;
   text-align: left;
   font-family: "Open Sans", sans-serif;
 `;

@@ -13,6 +13,7 @@ const StyledRating = styled.div`
   text-align: center;
   width: 100%;
   font-family: "Open Sans", sans-serif;
+  margin-bottom: "10px";
 `;
 
 const StyledStarDiv = styled.div`

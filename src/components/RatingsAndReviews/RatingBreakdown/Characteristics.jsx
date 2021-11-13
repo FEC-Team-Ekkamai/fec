@@ -7,6 +7,8 @@ const StyledCharacteristics = styled.div`
   top: 50%;
   height: 50%;
   width: 230px;
+  margin-top: 10px;
+  margin-left: 20px;
 `;
 
 const Characteristics = (props) => {

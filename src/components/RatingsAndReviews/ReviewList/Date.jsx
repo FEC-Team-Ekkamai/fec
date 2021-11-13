@@ -10,6 +10,7 @@ const StyledDate = styled.div`
   color: gray;
   font-size: 11px;
   font-family: "Open Sans", sans-serif;
+  margin-top: 18px;
 `;
 
 const Date = (props) => (

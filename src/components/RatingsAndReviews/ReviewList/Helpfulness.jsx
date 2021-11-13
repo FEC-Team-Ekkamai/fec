@@ -10,6 +10,7 @@ const StyledHelp = styled.div`
   color: gray;
   font-size: 14px;
   font-family: "Open Sans", sans-serif;
+  margin-bottom: 15px;
 `;
 
 const Helpfulness = (props) => (

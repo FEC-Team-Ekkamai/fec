@@ -11,7 +11,9 @@ const StyledCont = styled.div`
   height: 600px;
   float: left;
   background-color: #9eb7c0;
-  padding-left: 2%;
+  padding: 10px;
+  margin-left: 2%;
+  margin-right: 15px;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
   border-radius: 25px;
 `;

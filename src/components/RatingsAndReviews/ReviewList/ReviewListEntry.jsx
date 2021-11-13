@@ -10,10 +10,10 @@ import StarRating from "./StarRating.jsx";
 
 const StyledEntry = styled.div`
   position: relative;
-  width: 550px;
+  width: 675px;
   height: 150px;
-  padding-bottom: 0px;
-  margin: 0 auto;
+  padding: 15px;
+  margin: 15px;
   border-bottom: 1px solid black;
   border-radius: 25px;
   background-color: #9eb7c0;

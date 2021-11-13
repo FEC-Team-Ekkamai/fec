@@ -3,18 +3,17 @@ import styled from "styled-components";
 
 const StyledBarArea = styled.div`
 position: absolute;
-  width: 100%
-  height: 50%
-  border: 1px solid black;
+  width: 273px;
+  height: 50%;
   padding: 5px 0px 5px 0px;
   font-family: "Open Sans", sans-serif;
-
+  margin-left: 20px;
 `;
 
 const StyledBar = styled.svg`
   height: 10px;
   width: 85%;
-  padding: 2px 0px 0px 2px;
+  padding: 10px 10px 0px 2px;
   display: flex;
   justify-content: center;
 `;
@@ -72,7 +71,7 @@ const RatingsChart = (props) => {
 
   return (
     <StyledBarArea>
-      <div text-align="center">5 stars</div>
+      <div style={{marginLeft: "94px", marginTop: "5px"}}>5 stars</div>
       <StyledBar width="100%" height="65px">
         <g>
           <rect fill="#D0D0D0" width="100%" height="5"></rect>
@@ -83,7 +82,7 @@ const RatingsChart = (props) => {
           ></rect>
         </g>
       </StyledBar>
-      4 stars
+      <div style={{marginLeft: "94px", marginTop: "5px"}}>4 stars</div>
       <StyledBar width="100%" height="65px">
         <g>
           <rect fill="#D0D0D0" width="100%" height="5"></rect>
@@ -94,7 +93,7 @@ const RatingsChart = (props) => {
           ></rect>
         </g>
       </StyledBar>
-      3 stars
+      <div style={{marginLeft: "94px", marginTop: "5px"}}>3 stars</div>
       <StyledBar width="100%" height="65px">
         <g>
           <rect fill="#D0D0D0" width="100%" height="5"></rect>
@@ -105,14 +104,14 @@ const RatingsChart = (props) => {
           ></rect>
         </g>
       </StyledBar>
-      2 stars
+      <div style={{marginLeft: "94px", marginTop: "5px"}}>2 stars</div>
       <StyledBar width="100%" height="65px">
         <g>
           <rect fill="#D0D0D0" width="100%" height="5"></rect>
           <rect fill="000000" width={twoStarPercentageString} height="5"></rect>
         </g>
       </StyledBar>
-      1 star
+      <div style={{marginLeft: "94px", marginTop: "5px"}}>1 stars</div>
       <StyledBar width="100%" height="65px">
         <g>
           <rect fill="#D0D0D0" width="100%" height="5"></rect>
