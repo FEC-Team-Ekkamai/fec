@@ -91,6 +91,7 @@ class AddAnswer extends React.Component {
             name="email"
             type="text"
             onChange={this.handleChange}
+            required
             />
         </div>
         <label htmlFor="photos">Add Photos: </label>
@@ -100,6 +101,7 @@ class AddAnswer extends React.Component {
             type="file"
             accept="image/*"
             onChange={this.handleChange}
+            required
           />
         </div>
         </Container>

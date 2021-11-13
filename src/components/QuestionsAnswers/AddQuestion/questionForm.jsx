@@ -63,6 +63,7 @@ class QuestionForm extends React.Component {
               name="name"
               type="text"
               onChange={this.handleChange}
+              required
             />
           </div>
           <div>
@@ -72,6 +73,7 @@ class QuestionForm extends React.Component {
               name="email"
               type="text"
               onChange={this.handleChange}
+              required
             />
           </div>
         </Container>
