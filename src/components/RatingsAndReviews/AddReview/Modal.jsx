@@ -10,20 +10,22 @@ const StyledWrapper = styled.div`
   margin: 300px auto 0;
   transition: all 0.8s;
   width: 60%;
+  left: -433%;
   border-radius: 10px;
   position: absolute;
   z-index: 3;
-  left: 50%;
-  top: 100%;
-  transform: translate(-50%, -50%);
+  transform: translate(-175%, -100%);
+  overflow: visible;
 `;
 
 const StyledHeader = styled.div`
   background-color: #9eb7c0;
   height: 40px;
+  width: 700px;
+
   line-height: 40px;
   padding: 5px 20px;
-  text-align: right;
+  text-align: left;
   font-family: "Open Sans", sans-serif;
 `;
 
@@ -31,6 +33,7 @@ const StyledHeaderTwo = styled.h2`
   float: left;
   margin: 0;
   padding: 0;
+  width: 700px;
   font-family: "Open Sans", sans-serif;
 `;
 
@@ -38,6 +41,7 @@ const StyledBody = styled.div`
   padding: 10px 15px;
   text-align: center;
   height: 700px;
+  width: 700px;
   background-color: #89aab8;
 `;
 
@@ -46,6 +50,7 @@ const StyledFooter = styled.div`
   height: 35px;
   padding: 15px;
   background-color: #9eb7c0;
+  width: 700px;
 `;
 
 const StyledButton = styled.span`

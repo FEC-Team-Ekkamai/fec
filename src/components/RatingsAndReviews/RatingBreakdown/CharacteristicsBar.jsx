@@ -100,15 +100,4 @@ const CharacteristicsBar = (props) => {
 
 export default CharacteristicsBar;
 
-/*
-<img
-          src={triangle}
-          height="25px"
-          width="25px"
-          style={{
-            transform: `translateX(-${
-              369.99 * (props.percentageValue / 100)
-            }px)`,
-          }}
-        />
-        */
+

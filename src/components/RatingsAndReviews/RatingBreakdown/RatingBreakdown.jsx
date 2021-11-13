@@ -11,6 +11,7 @@ const StyledCont = styled.div`
   height: 600px;
   float: left;
   background-color: #9eb7c0;
+  padding-left: 2%;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
   border-radius: 25px;
 `;
@@ -22,7 +23,6 @@ class RatingBreakdown extends React.Component {
   }
 
   render() {
-    console.log(this.props.meta);
     return (
       <StyledCont>
         <Stars stars={this.props.meta} />

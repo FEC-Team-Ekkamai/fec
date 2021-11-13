@@ -6,7 +6,7 @@ var  ImageGallery = (props) => {
   return (
     <div className="galleryContainer">
       <div className="imageCarousel">
-        {photosLength > 7 ? <div onClick={() => {props.changeMaxMin(-1)}}>{'^'}</div> : null}
+        {photosLength > 7 ? <button className="carouselButton" onClick={() => {props.changeMaxMin(-1)}}>{'^'}</button> : null}
         {props.styles.results[props.currentStyle].photos.map((photo, i) => {
           return (
             <CarouselEntry
@@ -20,7 +20,7 @@ var  ImageGallery = (props) => {
             getSelectedPhoto={props.getSelectedPhoto} />
           )
         })}
-        {photosLength > 7 ? <div onClick={() => {props.changeMaxMin(1)}}>{'∨'}</div> : null}
+        {photosLength > 7 ? <button className="carouselButton" onClick={() => {props.changeMaxMin(1)}}>{'∨'}</button> : null}
       </div>
       <div className="prevNext">
         <button onClick={() => {props.getNextPhoto(-1)}}>{'<'}</button>

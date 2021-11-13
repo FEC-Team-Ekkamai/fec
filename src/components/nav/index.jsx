@@ -15,9 +15,19 @@ const NavBar = styled.div`
   z-index: 5;
 `;
 
+const Container = styled.div`
+  margin-left: 2rem;
+`;
+
+const Logo = styled.h3`
+  color: #D0D0D0;
+`
+
 const Nav = (props) => (
   <NavBar className="product-search">
-    <div className="logo">LOGO</div>
+    <Container className="logo">
+      <Logo className="logo-text">Ekkamai</Logo>
+    </Container>
     <SearchBar
       onSubmit={props.onSubmit}
       onChange={props.onChange}

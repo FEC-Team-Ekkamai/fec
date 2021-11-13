@@ -9,7 +9,6 @@ const StyledRec = styled.div`
 `;
 
 const Recommend = (props) => {
-  console.log(props.meta);
   var total =
     Number(props.meta.recommended.false || 0) +
     Number(props.meta.recommended.true);
