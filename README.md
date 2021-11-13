@@ -19,7 +19,7 @@ Ekkamai Clothing is a monolithic e-Commerce website that delivers products to th
 - Nodemon: Version 2.0.14,  
 - React: Version 17.0.2,  
 - React-dom: Version 17.0.2,  
-- Styled-componenets: Version 5.3.3,  
+- Styled-components: Version 5.3.3,  
   
 
 
