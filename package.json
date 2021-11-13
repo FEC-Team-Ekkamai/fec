@@ -8,21 +8,18 @@
     "test": "jest",
     "build": "webpack --watch"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "axios": "^0.24.0",
-    "express": "^4.17.1",
+    "components": "^0.1.0",
     "moment": "^2.29.1",
-<<<<<<< HEAD
+    "node": "16.13.0",
     "nodemon": "^2.0.14",
-    "path": "^0.12.7",
-=======
->>>>>>> bd5f112339cc4d58e9fd4f8547b5344afc89cba1
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "styled-components": "^5.3.3"
+    "react-dropdown": "^1.9.2",
+    "react-icons": "^4.3.1",
+    "styled-components": "^5.3.3",
+    "webpack": "^5.62.1"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
@@ -32,16 +29,13 @@
     "babel-loader": "^8.2.3",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
+    "express": "^4.17.1",
+    "file-loader": "^6.2.0",
     "jest": "^27.3.1",
     "react-test-renderer": "^17.0.2",
+    "url-loader": "^4.1.1",
     "webpack": "^4.46.0",
-<<<<<<< HEAD
     "webpack-cli": "^4.9.1",
     "webpack-dev": "^1.1.1"
-  },
-  "devDependencies": {}
-=======
-    "webpack-cli": "^4.9.1"
   }
->>>>>>> bd5f112339cc4d58e9fd4f8547b5344afc89cba1
 }
