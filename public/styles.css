@@ -364,6 +364,7 @@ box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
   display: flex;
   flex-direction: row;
   font-size: 14px;
+  width: 33%;
 }
 
 .middle-reaction-container {
@@ -492,4 +493,8 @@ button:focus {
 
 .text-body-input, .text-input {
   font-family: 'Open Sans', sans-serif;
+}
+
+.reported-text {
+  color: red;
 }
