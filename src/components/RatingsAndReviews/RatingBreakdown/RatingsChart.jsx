@@ -20,9 +20,7 @@ const StyledBar = styled.svg`
 `;
 
 const RatingsChart = (props) => {
-  console.log(props.meta.ratings);
   var numberOfRatingsArray = Object.values(props.meta.ratings);
-  console.log(numberOfRatingsArray);
   var total = 0;
   numberOfRatingsArray.map((number) => {
     total += Number(number);

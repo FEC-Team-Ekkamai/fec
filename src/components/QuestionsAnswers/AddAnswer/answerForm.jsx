@@ -4,9 +4,26 @@ import axios from 'axios';
 import styled, { css } from 'styled-components';
 
 const AnswerBody = styled.textarea`
-  width; 75%;
-  height: 100px;
+  width: 75%;
+  height: 5rem;
   resize: none;
+  top: 0;
+  left: 0;
+  margin: 0 auto;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+`
+
+const Button = styled.button`
+  top: 0;
+  left: 0;
+  margin: 0 auto;
+  width: 5rem;
 `;
 
 class AddAnswer extends React.Component {
@@ -57,31 +74,44 @@ class AddAnswer extends React.Component {
   render() {
     return (
       <Form onSubmit={this.handleSubmit}>
-        <label htmlFor="name">Name: </label>
-        <input
-          name="name"
-          type="text"
-          onChange={this.handleChange}
-        /><br />
-        <label htmlFor="email">email: </label>
-        <input
-          name="email"
-          type="text"
-          onChange={this.handleChange}
-        /><br />
+        <Container>
+        <div>
+          <label htmlFor="name">Name: </label>
+          <input
+            className="text-input"
+            name="name"
+            type="text"
+            onChange={this.handleChange}
+            />
+        </div>
+        <div>
+          <label htmlFor="email">email: </label>
+          <input
+            className="text-input"
+            name="email"
+            type="text"
+            onChange={this.handleChange}
+            required
+            />
+        </div>
         <label htmlFor="photos">Add Photos: </label>
-        <input
-          name="photos"
-          type="file"
-          accept="image/*"
-          onChange={this.handleChange}
-        />
-        <label htmlFor="body">Response: </label>
+        <div>
+          <input
+            name="photos"
+            type="file"
+            accept="image/*"
+            onChange={this.handleChange}
+            required
+          />
+        </div>
+        </Container>
+        <Container><label htmlFor="body">Response: </label></Container>
         <AnswerBody
           name="body"
+          className="text-body-input"
           onChange={this.handleChange}
         />
-        <button type="submit">Submit</button>
+        <Button type="submit">Submit</Button>
       </Form>
     )
   }
