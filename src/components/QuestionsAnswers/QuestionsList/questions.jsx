@@ -7,7 +7,8 @@ class Questions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      numAnswersDisplayed: 2
+      numAnswersDisplayed: 2,
+      reportClicked: false
     };
     this.handleViewMoreAnswers = this.handleViewMoreAnswers.bind(this);
     this.handleHelpfulClick = this.handleHelpfulClick.bind(this);
@@ -46,8 +47,19 @@ class Questions extends React.Component {
   handleReport() {
     const id = { question_id: this.props.question.question_id}
     axios.put('/api/products/questions/report', id)
-      .then(() => {this.props.getQuestions()})
+      .then(() => {
+        this.setState({ reportClicked: true });
+        this.renderReportButton();
+      })
       .catch(console.error);
+  }
+
+  renderReportButton() {
+    return (
+        this.state.reportClicked
+          ? <p className="reported-text">Reported</p>
+          : <p>Report</p>
+    );
   }
 
   renderAnswerList() {
@@ -101,7 +113,9 @@ class Questions extends React.Component {
             <span
               className="reaction-button report-container"
               onClick={this.handleReport}
-              >Report</span>
+            >
+              {this.renderReportButton()}
+            </span>
           </div>
         </div>
         {this.renderAnswerList()}
