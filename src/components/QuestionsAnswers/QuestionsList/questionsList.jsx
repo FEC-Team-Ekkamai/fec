@@ -7,7 +7,8 @@ const List = styled.div`
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  background-color: #89aab8;;
+  background-color: rgba(0,0,0, .1);
+  border-radius: 15px;
 `;
 
 const QuestionsList = (props) => {

@@ -33,7 +33,7 @@ var AddToCart = (props) => {
     <div className="dropdowns">
       <div className="dropdownContainer">
         <select className="dropdown" onChange={props.availableQuantity}>
-          <option>SELECT SIZE</option>
+          {props.quantity === 0 ? <option>SELECT SIZE</option> : null }
             {keys.map((quantSize, i) => {
               var skuObj = props.styles.results[props.currentStyle].skus[quantSize]
               return <option value={skuObj.quantity} key={i}>{skuObj.size}</option>
@@ -49,7 +49,7 @@ var AddToCart = (props) => {
       </div>
     </div>
     <div className="dropdownContainer">
-      <button className="addToCartButton">Add To Cart</button>
+      <button className="addToCartButton" onClick={()=>{props.clickAddToCart()}}>Add To Cart</button>
     </div>
 
       <div className="test "style={{display: "grid", gridTemplateColumns: "repeat(3, 33%)", height: "40px", position: "relative", paddingTop: "10px"}}>

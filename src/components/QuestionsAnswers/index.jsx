@@ -73,7 +73,7 @@ class QuestionsView extends React.Component {
   render() {
     return (
       <div className="qa-container">
-        <h3>Questions &amp; Answers</h3>
+        <h3 style={{marginLeft: '30px'}}>Questions &amp; Answers</h3>
         <Search onChange={this.handleChange} />
         <div className="qa-body">
           <QuestionsList

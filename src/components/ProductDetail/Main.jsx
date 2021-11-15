@@ -23,6 +23,7 @@ class ProductDetail extends React.Component {
     this.getSelectedPhoto = this.getSelectedPhoto.bind(this);
     this.changeView = this.changeView.bind(this);
     this.changeMaxMin = this.changeMaxMin.bind(this);
+    this.clickAddToCart = this.clickAddToCart.bind(this);
   }
 
   getAvailableQuantity () {
@@ -75,6 +76,11 @@ class ProductDetail extends React.Component {
     }
   }
 
+  clickAddToCart () {
+    alert("You have added to your cart!")
+    this.setState({availableQuantity: 0});
+  }
+
   renderView () {
     if (this.state.view === 'main') {
       return <div className="overviewView">
@@ -102,6 +108,7 @@ class ProductDetail extends React.Component {
           currentStyle={this.state.selectedStyle}
           quantity={this.state.availableQuantity}
           currentProduct={this.props.currentProduct}
+          clickAddToCart={this.clickAddToCart}
           availableQuantity={this.getAvailableQuantity} />
         </div>
       </div>
